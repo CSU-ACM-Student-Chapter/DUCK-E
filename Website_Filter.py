@@ -4,7 +4,6 @@ Description: Web Filter Class
 Note:Another Class should be in charge of messages if fun has_SafeMsgLinks rturns false
 '''
 import re
-
 class Website_Filter():
 
     @classmethod
@@ -13,13 +12,13 @@ class Website_Filter():
 
     @classmethod
     def has_website(self,txt) -> list:
-        # Seperates websites from user string, returns empty if no websites are found
+        '''Seperates websites from user string, returns empty if no websites are found'''
         status = re.findall('[A-Za-z]+\.[A-za-z]{2,3}(?![A-Za-z])', txt)
         return status
 
     @classmethod
     def has_approvedTLD(self,Web_Link) -> bool:
-        #Checks if website contains an approved top-level domain, returns false if not
+        '''Checks if website contains an approved top-level domain, returns false if not'''
         status = bool(re.search('[^\s]+\.(gov|edu|org).*', Web_Link))
         return status
 
@@ -52,9 +51,6 @@ class Website_Filter():
                 return False
         return True
 
-
-
-
     @classmethod
     def has_SafeMsgLinks(self,file_WhiteList,msg_String) -> bool:
         '''Filters input msg for links. If msg contains unapproved links returns false '''
@@ -64,6 +60,7 @@ class Website_Filter():
             return True
         else:
             #If msg contains websites for approved TLD
+            #todo: rename has approved tld to has_unapproved tld
             unapproved_TLD = Website_Filter.has_approvedTLD_List(WebList)
             #If msg contains unapproved TLD's check whitelist
             if(len(unapproved_TLD)!= 0):
@@ -72,10 +69,5 @@ class Website_Filter():
                 return is_approved
             return True
 
-
-
-
-
-
-#WF = Website_Filter()
-#print(WF.has_SafeMsgLinks('Accepted_Links.txt','apple dsfjisdalkdf www.youtube.com'))
+WF = Website_Filter()
+print(WF.has_SafeMsgLinks('Accepted_Links.txt','apple dsfjisdalkdf www.youtube.com'))
