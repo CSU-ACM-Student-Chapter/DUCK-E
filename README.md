@@ -8,4 +8,5 @@ Discord Bot named DUCK-E. For ACM channel at CSU.
 - Member Points System
 - Club Info Reporting
 
-For further information about bot, please see attached .txt file.
+For further information about bot, please see DUCKE User Guide file.
+*TODO: Add 'User Guide' file*
