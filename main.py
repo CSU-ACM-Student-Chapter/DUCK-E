@@ -11,7 +11,7 @@ TODO: Look into putting functionality to grab a random question into a different
 Checking Questions
 TODO: Add functionality to grab answers from user. If a conditional is already in place to only allow 1 question per channel. 
         Then this should only need to check the channel to obtain the current question.
-'''
+'''  
 import discord
 import os
 from dotenv import load_dotenv
@@ -31,6 +31,9 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 tree = bot.tree
 
+#https://www.unicode.org/emoji/charts/full-emoji-list.html
+#discord.emoji
+
 '''
 STEP 2: PRINTING AN ON READY MESSAGE TO THE TERMINAL
 '''
@@ -48,11 +51,22 @@ STEP 3: ASYNCRONOUS OBSERVER FOR COMMANDS ON THE SERVER
 '''
 
 @bot.tree.command(name="question", description="Gives a random question. Not yet atleast but one day!")
-async def question(inter: discord.Interaction, reoccuring: bool, subject: str):
-    await inter.response.send_message(get_question())
+async def question(inter: discord.Interaction, subject: str, minutes_to_answer: int):
+    question, answer, a, b, c, d = get_question()
+    question = f"**{question}**\n{a}\n{b}\n{c}\n{d}\n"
+    await inter.response.send_message(question)
+    await asyncio.sleep(minutes_to_answer*60)
+    await inter.response.send_message(f"**Answer: **{answer}")
+    await 
+
+@bot.event
+async def check_question_poll(message):
+    async 
+
+
 
 @bot.tree.command(name="answer", description="Takes in an answer and notifies if the answer is correct or not")
-async def question(inter: discord.Interaction):
+async def answer(inter: discord.Interaction):
     await inter.response.send_message("")
 
 @bot.tree.command(name="announcement", description="Announces information to the club")
@@ -76,12 +90,22 @@ async def ping(inter: discord.Interaction) -> None:
     '''Get the bots latency'''
     await inter.response.send_message(f"Pong! ({round(bot.latency * 1000)}ms)")
 
+'''
+OTHER FUNCTIONS
+'''
+
+# Gets random question & answer from subjects respective csv file
 def get_question() -> str:
     df = pd.read_csv('Questions/algorithms.csv')
     questions = len(df)-1
-    
+    questions = random.randint(0, questions)
     question = str(df.iat[questions, 0])
-    return question
+    a = str(df.iat[questions,1])
+    b = str(df.iat[questions,2])
+    c = str(df.iat[questions,3])
+    d = str(df.iat[questions,4])
+    answer = str(df.iat[questions,5])
+    return question, answer, a, b, c, d
 
 '''
 STEP 0: RUNNING BOT
