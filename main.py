@@ -11,7 +11,8 @@ TODO: Look into putting functionality to grab a random question into a different
 Checking Questions
 TODO: Add functionality to grab answers from user. If a conditional is already in place to only allow 1 question per channel. 
         Then this should only need to check the channel to obtain the current question.
-'''  
+''' 
+
 import discord
 import os
 from dotenv import load_dotenv
@@ -31,9 +32,6 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 tree = bot.tree
 
-#https://www.unicode.org/emoji/charts/full-emoji-list.html
-#discord.emoji
-
 '''
 STEP 2: PRINTING AN ON READY MESSAGE TO THE TERMINAL
 '''
@@ -52,34 +50,28 @@ STEP 3: ASYNCRONOUS OBSERVER FOR COMMANDS ON THE SERVER
 
 @bot.tree.command(name="question", description="Gives a random question. Not yet atleast but one day!")
 async def question(inter: discord.Interaction, subject: str, minutes_to_answer: int):
-    question, answer, a, b, c, d = get_question()
-    question = f"**{question}**\n{a}\n{b}\n{c}\n{d}\n"
-    await inter.response.send_message(question)
-    await asyncio.sleep(minutes_to_answer*60)
-    await inter.response.send_message(f"**Answer: **{answer}")
-    await 
+    await inter.response.defer()
+    question, answer, choices = get_question()
+    answer_emojis = ['🇦', '🇧', '🇨', '🇩']
+    
+    question = f"**{question}**\n**A:** {choices[0]}\n\
+        **B:** {choices[1]}\n\
+        **C:** {choices[2]}\n\
+        **D:** {choices[3]}\n"
+    
+    msg = await inter.followup.send(question) 
+    for emoji in answer_emojis:
+        await msg.add_reaction(emoji)
+    
+    await asyncio.sleep(minutes_to_answer*8)  
+    msg = await msg.channel.fetch_message(msg.id)
+    
+    await check_answers(msg, answer_emojis[answer])
+    await msg.channel.send(f"**Answer:** {choices[answer]}")
 
-@bot.event
-async def check_question_poll(message):
-    async 
-
-
-
-@bot.tree.command(name="answer", description="Takes in an answer and notifies if the answer is correct or not")
-async def answer(inter: discord.Interaction):
-    await inter.response.send_message("")
-
-@bot.tree.command(name="announcement", description="Announces information to the club")
-async def schedule_message(inter: discord.Interaction, mention: int):
-    now = datetime.datetime.now()
-    #then = now+datetime.timedelta(minute)
-    then = now.replace(hour=20, minute=41)
-    print(then)
-    print(now)
-    wait_time = (then-now).total_seconds()
-    print(wait_time)
-    await asyncio.sleep(wait_time)
-    await inter.response.send_message("Question Testing")
+@bot.tree.command(name="quiz", description="Will grab 10 random questions to give a quiz on")
+async def quiz(inter: discord.Interaction, subject: str, minutes_to_answer: int):
+    pass
 
 @bot.tree.command(name="echo", description="Echo your message")
 async def echo(interaction: discord.Interaction, message: str):
@@ -95,7 +87,7 @@ OTHER FUNCTIONS
 '''
 
 # Gets random question & answer from subjects respective csv file
-def get_question() -> str:
+def get_question():
     df = pd.read_csv('Questions/algorithms.csv')
     questions = len(df)-1
     questions = random.randint(0, questions)
@@ -104,8 +96,69 @@ def get_question() -> str:
     b = str(df.iat[questions,2])
     c = str(df.iat[questions,3])
     d = str(df.iat[questions,4])
-    answer = str(df.iat[questions,5])
-    return question, answer, a, b, c, d
+    choices = [a, b, c, d]
+    answer = match_letter_to_number(str(df.iat[questions,5]))
+    return question, answer, choices
+
+async def check_answers(message: object, answer_emoji: object):
+    '''
+    Need to break up the two functions below
+    await check_duplicates()
+    await verify_answers()
+    '''
+    # Check duplicates, will get called out if spamming all reacts
+    
+    # Grab list of the users for all question reactions
+    users_list = []
+    for reaction in message.reactions:
+        async for user in reaction.users():
+            if user != bot.user:
+                users_list.append(user.name)
+
+    # Check for duplicates in users list
+    user_set = set()
+    cheating_users = ""
+    print(users_list)
+    for user in users_list:
+        print(user_set)
+        if user in user_set:
+            cheating_users += f'{user}, '
+            print(user)
+        else:
+            user_set.add(user)
+
+    cheating_users = cheating_users[:-2]
+    print(user_set)
+    print(cheating_users)
+        
+            
+    # Check correct users
+    for reaction in message.reactions:
+        if (reaction.emoji == answer_emoji):
+            correct_users = ""
+            async for user in reaction.users():
+                if user != bot.user:
+                    correct_users += f'{user.name}, '
+            correct_users = correct_users[:-2]
+                
+    await message.channel.send(f"Congratulation to {correct_users} for getting the question right!\n \
+                               The correct answer was {answer_emoji}")
+    
+    if(len(cheating_users)>0):
+        await message.channel.send(f"Multiple answers were given by {cheating_users}. Minus 10 points!")
+              
+
+def match_letter_to_number(answer: str)-> int:
+    if str(answer).strip().upper() == "A":
+        return 0
+    elif str(answer).strip().upper() == "B":
+        return 1
+    elif str(answer).strip().upper() == "C":
+        return 2
+    elif str(answer).strip().upper() == "D":
+        return 3
+    else:
+        return -1
 
 '''
 STEP 0: RUNNING BOT
