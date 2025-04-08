@@ -1,0 +1,238 @@
+Question,PossibleAnswer1,PossibleAnswer2,PossibleAnswer3,PossibleAnswer4,CorrectAnswer
+"What can you use to automatically send an alert if an administrator 
+stops an Azure virtual machine?",Azure Advisor,Azure Service Health,Azure Monitor,Azure Network Watcher,A
+"You have an Azure environment. 
+You need to create a new Azure virtual machine from a tablet that runs the Android 
+operating system. 
+What are three possible solutions? Each correct answer presents a complete solution.",Use Bash in Azure Cloud Shell.,Use PowerShell in Azure Cloud Shell.,Use the PowerApps portal.,"Use the Security & Compliance admin center. 
+• E. Use the Azure portal.",B
+Which service provides serverless computing in Azure?,Azure Virtual Machines,Azure Functions,Azure storage account,Azure dedicated hosts,A
+"Your Azure environment contains multiple Azure virtual machines. 
+You need to ensure that a virtual machine named VM1 is accessible from 
+the Internet over HTTP. 
+What are two possible solutions? Each correct answer presents a complete 
+solution.",Modify an Azure Traffic Manager profile,Modify a network security group (NSG),Modify a DDoS protection plan,Modify an Azure firewall,B
+"5. What can you use to identify underutilized or unused Azure virtual machines?
+ A. Azure Advisor 
+• B. Azure Cost Management + Billing 
+• C. Azure reservations 
+• D. Azure Policy 
+Answer: A 
+Explanation: 
+Azure Advisor is a service in Microsoft Azure that provides personalized and actionable 
+recommendations to help optimize your Azure resources and configurations. It helps you 
+identify underutilized or unused Azure virtual machines by analysing usage patterns, 
+performance metrics, and other telemetry data. 
+When you use Azure Advisor, it examines your Azure environment and provides insights into 
+various aspects, including virtual machine usage. It can suggest resizing or deallocating 
+virtual machines that are not being fully utilized, helping you optimize costs and improve 
+overall efficiency. 
+6. You have an Azure environment that contains multiple Azure virtual 
+machines. 
+You plan to implement a solution that enables the client computers on your 
+on-premises network to communicate to the Azure virtual machines. 
+You need to recommend which Azure resources must be created for the 
+planned solution. 
+Which two Azure resources should you include in the recommendation?",A virtual network gateway,A load balancer,An application gateway,"A virtual network 
+• E. A gateway subnet",A
+"You attempt to create several managed Microsoft SQL Server instances 
+in an Azure environment and receive a message that you must increase 
+your Azure subscription limits. 
+What should you do to increase the limits?
+A. Create a service health alert 
+• B. Upgrade your support plan 
+• C. Modify an Azure policy 
+• D. Create a new support request 
+Answer: D 
+Explanation: 
+To increase your Azure subscription limits, you need to create a new support request with 
+Microsoft Azure support. Azure subscription limits are set by default, and if you require 
+higher limits for specific resources or services, you can request an increase through the 
+Azure support portal. 
+By creating a new support request, you can specify the limits you need to increase, and 
+Azure support will review your request and take appropriate action based on your 
+requirements. 
+8. You plan to map a network drive from several computers that run 
+Windows 10 to Azure Storage. 
+You need to create a storage solution in Azure for the planned mapped 
+drive. 
+What should you create?",an Azure SQL database,a virtual machine data disk,a File service in a storage account,a Blob service in a storage account,C
+"Your company plans to start using Azure and will migrate all its network 
+resources to Azure. 
+You need to start the planning process by exploring Azure. 
+What should you create first?",A subscription,A resource group,A virtual network,A management group,A
+"Which Azure service should you use to collect events from multiple 
+resources into a centralized repository?",Azure Event Hubs,Azure Analysis Services,Azure Monitor,Azure Stream Analytics,A
+"Your company plans to deploy an Artificial Intelligence (AI) solution in 
+Azure. 
+What should the company use to build, test, and deploy predictive 
+analytics solutions?",Azure Logic Apps,Azure Machine Learning Designer,Azure Batch,Azure Cosmos DB,B
+"Your company plans to deploy several million sensors that will upload 
+data to Azure. 
+You need to identify which Azure resources must be created to support the 
+planned solution. 
+Which two Azure resources should you identify? Each correct answer 
+presents part of the solution.",Azure Data Lake,Azure Queue storage,Azure File Storage,"Azure IoT Hub 
+• E. Azure Notification Hubs",B
+"You have an on-premises application that sends email notifications 
+automatically based on a rule. 
+You plan to migrate the application to Azure. 
+You need to recommend a serverless computing solution for the 
+application. 
+What should you include in the recommendation?",A web app,A server image in Azure Marketplace,A logic app,An API app,C
+"Which Azure service provides a set of version control tools to manage 
+code?",Azure Repos,Azure DevTest Labs,Azure Storage,Azure Cosmos DB,A
+"A team of developers at your company plans to deploy, and then 
+remove, 50 customized virtual machines each week. Thirty of the virtual 
+machines run Windows 
+Server 2016 and 20 of the virtual machines run Ubuntu Linux. 
+You need to recommend which Azure service will minimize the 
+administrative effort required to deploy and remove the virtual machines. 
+What should you recommend?",Azure Reserved Virtual Machines (VM) Instances,Azure virtual machine scale sets,Azure DevTest Labs,Microsoft Managed Desktop,C
+"What is the most severe failure from which an Azure Availability Zone 
+can be used to protect access to Azure service?",A physical server failure,An Azure region failure,A storage failure,An Azure data center failure,D
+"You need to purchase a third-party virtual security appliance that you 
+will deploy to an Azure subscription. 
+What should you use?",Azure subscriptions,Azure Security Center,Azure Marketplace,Microsoft Store,C
+"You plan to deploy several Azure virtual machines. 
+You need to ensure that the services running on the virtual machines 
+remain available if a single data center fails. 
+What are two possible solutions?",Deploy the virtual machines to two or more availability zones.,Deploy the virtual machines to two or more resource groups.,Deploy the virtual machines to a scale set.,Deploy the virtual machines to two or more regions.,A
+"You plan to implement an Azure database solution. 
+You need to implement a database solution that meets the following 
+requirements:  
+• Can add data concurrently from multiple regions 
+• Can store JSON documents 
+Which database service should you deploy?  
+Answer – Azure Cosmos DB 
+Explanation: 
+Azure Cosmos DB is a globally distributed, multi-model database service provided by 
+Microsoft. It is designed to scale horizontally and handle large volumes of data with low 
+latency across multiple regions. With Cosmos DB, you can choose from different 
+consistency levels to meet your specific application needs and ensure data availability and 
+responsiveness. 
+Cosmos DB is a NoSQL database that supports multiple data models, including document 
+data model, key-value, graph, column-family, and more. The document data model is ideal 
+for storing and querying JSON documents as it provides schema flexibility, allowing you to 
+store varying data structures within the same collection. 
+By deploying Azure Cosmos DB, you can achieve global distribution of data, enabling you to 
+add data concurrently from multiple regions while ensuring. 
+20. You have 50 virtual machines hosted on-premises and 50 virtual 
+machines hosted in Azure. The on-premises virtual machines and the Azure 
+virtual machines connect to each other. 
+Which type of cloud model is this?",Hybrid,Private,Public,None of above,A
+"Your company plans to deploy several custom applications to Azure. 
+The applications will provide invoicing services to the customers of the 
+company. Each application will have several prerequisite applications and 
+services installed. 
+You need to recommend a cloud deployment solution for all the 
+applications. 
+What should you recommend?",Software as a Service (SaaS),Platform as a Service (PaaS),Infrastructure as a Service (laaS),None of above,B
+"Your company has virtual machines (VMs) hosted in Microsoft Azure. 
+The VMs are located in a single Azure virtual network named VNet1. 
+The company has users that work remotely. The remote workers require 
+access to the VMs on VNet1. 
+You need to provide access for the remote workers. 
+What should you do?
+A. Configure a Site-to-Site (S2S) VPN. 
+• B. Configure a VNet-toVNet VPN. 
+• C. Configure a Point-to-Site (P2S) VPN. 
+• D. Configure DirectAccess on a Windows Server 2012 server VM. 
+• E. Configure a Multi-Site VPN 
+Answer: C 
+Explanation: 
+To provide access for remote workers who need to connect to the virtual machines (VMs) on 
+VNet1, you should configure a Point-to-Site (P2S) VPN. Point-to-Site VPN enables individual 
+remote clients to securely connect to an Azure virtual network over the public internet. This 
+allows remote workers to access resources on VNet1 as if they were directly connected to 
+the virtual network. 
+23. You have an on-premises network that contains several servers. 
+You plan to migrate all the servers to Azure. 
+You need to recommend a solution to ensure that some of the servers are 
+available if a single Azure data center goes offline for an extended period. 
+What should you include in the recommendation?",Fault tolerance,elasticity,scalability,low latency,A
+"Your company hosts an accounting application named App1 that is 
+used by all the customers of the company. 
+App1 has low usage during the first three weeks of each month and very 
+high usage during the last week of each month. 
+Which benefit of Azure Cloud Services supports cost management for this 
+type of usage pattern?",high availability,high latency,Elasticity,load balancing,C
+"You have 1,000 virtual machines hosted on the Hyper-V hosts in a data 
+center. 
+You plan to migrate all the virtual machines to an Azure pay-as-you-go 
+subscription. 
+You need to identify which expenditure model to use for the planned Azure 
+solution. 
+Which expenditure model should you identify?",operational,elastic,capital,scalable,A
+"Your company plans to migrate to Azure. 
+The company has several departments. All the Azure resources used by 
+each department will be managed by a department administrator. 
+What are two possible techniques to segment Azure for the departments? 
+Each correct answer presents a complete solution.",Multiple subscriptions,Multiple Azure Active Directory (Azure AD) directories,Multiple regions,Multiple resource groups,A
+"You plan to deploy a website to Azure. The website will be accessed by 
+users worldwide and will host large video files. 
+You need to recommend which Azure feature must be used to provide the 
+best video playback experience. 
+What should you recommend?",An application gateway,An Azure ExpressRoute circuit,A content delivery network (CDN),An Azure Traffic Manager profile,C
+What does a customer provide in a software-as-a-service (SaaS) model?,Application data,data storage,compute resources,application software,A
+"What is the first stage in the Microsoft Cloud Adoption Framework for 
+Azure?",Adopt the cloud.,Make a plan.,Ready your organization.,Define your strategy.,D
+"What are the two benefits of cloud computing? Each correct answer 
+presents a complete solution.",enables the rapid provisioning of resources,has increased administrative complexity,has the same configuration options as on-premises,shifts capital expenditures (CAPEX) to operating expenditures (OPEX),A
+"Which cloud computing benefit provides continuous user access to a 
+cloud-based application with minimal downtime?",Agility,Scalability,Elasticity,High availability,D
+"You need to be notified when Microsoft plans to perform maintenance 
+that can affect the resources deployed to an Azure subscription. 
+What should you use?",Azure Monitor,Azure Service Health,Azure Advisor,Microsoft Trust Center,B
+"You plan to deploy a service to Azure virtual machines. 
+You need to ensure that the service will be available if a data center fails. 
+What should you use as part of the virtual machine deployment?",Availability sets,Proximity placement groups,Host groups,Availability zones,D
+"You need to manage containers. 
+Which two services can you use? Each correct answer presents a complete 
+solution. 
+NOTE: Each correct selection is worth one point.",Azure Virtual Desktop,Azure virtual machines,Azure Functions,"Azure Container Instances 
+• E. Azure Kubernetes Service (AKS)",D
+Azure provides flexibility between capital expenditure and operational,Yes,No,,,B
+"If you create two Azure VMs that use B2S size, each VM will always",Yes,No,,,B
+When an Azure VM is stopped you continue to pay storage costs,Yes,No,,,B
+A Paas solution that hosts web apps on Azure provides full control of,Yes,No,,,B
+Virtual machine - IaaS (Infrastructure as a service),Yes,No,,,A
+Azure SQL database - Paas (Platform as a service),Yes,No,,,A
+"To achieve a hybrid cloud, a company must always migrate from a",Yes,No,,,B
+A company can extend the capacity of its internal network by using the,Yes,No,,,B
+In the public cloud only organizations have access to it,Yes,No,,,B
+An Azure web app that requires an on-premises Microsoft SQL server is,Yes,No,,,B
+For hybrid cloud is a mix of on-premises and public cloud,Yes,No,,,A
+Public cloud requires no capital expenditure,Yes,No,,,A
+Azure Cosmos DB is an example of a SaaS solution,Yes,No,,,B
+You can create a resource group inside a resource group,Yes,No,,,B
+An Azure VM can be in multiple resource groups,Yes,No,,,B
+A resource group can contain resources from multiple Azure regions,Yes,No,,,A
+Azure Cosmos DB is an example of PaaS,Yes,No,,,A
+Part of a hybrid cloud is a public cloud,Yes,No,,,A
+A private cloud must be disconnected from the internet,Yes,No,,,B
+Two Azure subscriptions can be merged into a single subscription,Yes,No,,,B
+Each Azure subscription can have multiple owners,Yes,No,,,B
+You can associate a network security group (NSG) to a virtual network,Yes,No,,,B
+You can associate a network security group (NSG) to a virtual network,Yes,No,,,B
+You can associate a network security group (NSG) to a network,Yes,No,,,B
+You can create custom Azure roles to control access to resources,Yes,No,,,A
+A user account can be assigned to multiple Azure roles,Yes,No,,,A
+A resource group can have the owner role assigned to multiple users,Yes,No,,,B
+You can create Group policies in the Azure Active Directory (Azure AD),Yes,No,,,A
+You can join Windows 1o devices to Azure Active Directory (Azure AD),Yes,No,,,A
+You can join Android devices to Azure Active Directory (Azure AD),Yes,No,,,B
+You can add an Azure resource manager template to Azure Blueprint,Yes,No,,,A
+You can assign an Azure blueprint to a resource group,Yes,No,,,B
+You can use Azure blueprints to grant permissions to a resource,Yes,No,,,A
+An Azure resource can have multiple Delete locks,Yes,No,,,A
+An Azure resource inherits locks from its resource groups,Yes,No,,,A
+Trust centers are a part of the Azure security center,Yes,No,,,B
+Trust centers can only be accessed by users who have an Azure,Yes,No,,,B
+Trust centers provide information about the Azure compliance offerings,Yes,No,,,A
+You can use Azure policies to assign tags to resources,Yes,No,,,A
+You can add multiple tags to the same Azure resource,Yes,No,,,A
+A standard support plan is included in an Azure free account,Yes,No,,,B
+By copying several GB of data from Azure to an on-premises network,Yes,No,,,B
+Azure active directory (Azure AD) provides single sign-on (SSO),Yes,No,,,A
+IOS devices can be registered in Azure active directory (Azure AD),Yes,No,,,A

@@ -1,0 +1,131 @@
+Question,PossibleAnswer1,PossibleAnswer2,PossibleAnswer3,PossibleAnswer4,CorrectAnswer
+Which of the following is/are the levels of implementation of data structure,Abstract level,Application level,Implementation level,All of the above,D
+Which of the following is non-liner data structure?,Stacks,List,Strings,Trees,D
+Which of the following data structure is non linear type?,Strings,Lists,Stacks,Graph,D
+Which of the following data structure is linear type?,Graph,Trees,Binary tree,Stack,D
+"To represent hierarchical relationship between elements, Which data structure is suitable?",Dequeue,Priority,Tree,Graph,C
+A list which displays the relationship of adjacency between elements is said to be,linear,non linear,linked list,trees,A
+Which of the following statement is false ?,Arrays are dense lists and static data structure,data elements in linked list need not be stored in adjecent space in memory,pointers store the next data element of a list,linked lists are collection of the nodes that contain information part and next pointer,C
+A linear list of elements in which deletion can be done from one end (front) and insertion can take place only at the other end (rear) is known as a,queue,stack,tree,linked list,A
+___________ is neither an algorithm nor a program.,Computing,Pseudo code,Computer science,None of the above,B
+The concepts in programming languages are essential knowledge to anyone who wants to become skilled in_________________.,Computer programming,Data structures,Decoding,None of the above,A
+Which model is used to organize data in the main memory is called data structure?,Logical,Mathematical,Debugging,All of the above,D
+A ________is a linear list of data elements in which the addition of a new element or the deletion of an element occurs only at one end.,Top,Push and pop,Stack,None of the above,C
+The hierarchical relationship between data elements can be easily represented using a nonlinear data structure called_______.,Tree,Root node,Child nodes,None of the above,A
+What is the process of finding the location of a given data element in the data structure called?,Deletion,Insertion,Traversing,Searching,D
+What plays an important role in programming?,Data,Computer,Information,None of the above,A
+__________ is a collection of data elements of similar data types.,String,Arrays,Both (a) and (b),,B
+Which is an example of a dynamic data structure?,Linked list,Memory location,Stack,String,A
+A data structure is a group of data elements grouped together under ______.,One name,Different names,Multiple names,Same name,A
+"To write fixed-length records, use file open mode:",ios::app,ios::ate,ios::trunc,ios::binary,D
+A random access file is organized most like a(n):,Array,Object,Class,Pointer,A
+Which file open mode would be used to write data only to the end of an existing file?,ios::app,ios::in,ios::out,ios::trunc,A
+Which one of the below mentioned is linear data structure?,Queue,Stack,Arrays,All of these,D
+Term Data Structure refers to _________ and interrelationship between them.,Programming Language Statement,Coding Standards,Organization of data element,None of these,C
+Data is nothing but ____________.,Bunch of Information,Piece of Information,Programming Statement,None of these,B
+Single and non-decomposable data is called ______________.,Composite Data,Textual Data,Atomic Data,Numeric Data,C
+Atomic Data is also called as _____________.,Scalar Data,Dynamic Data,Textual Data,None of these,A
+Data that can be broken down into small pieces and each sub-field having the some meaning is called as ___________.,Dynamic Data,Composite Data,Textual Data,Atomic Data,B
+Mathematical Model that can have set of operations that can be performed on that model is called as _________.,Abstract Data Type,Composite Data Type,Primitive Data Type,None of these,A
+Variable which can be accessed by all modules of the program is called as __________.,Global Variable,Static Variable,Auto Variable,Local Variable,A
+"In what kind of storage we can easily insert,delete,concatenate and rearrange substrings ?",Queue,Linked List,Stack,Array,B
+ADT is called as Abstract because,It is completely independent data type,It is collection of different data types,Implementation Details are hidden,None of these,C
+_________________ defines a set of primitive elements which do not involves any other element as its sub-part.,Non Linear Data Structure,Linear Data Structure,Non-Primitive Data Structure,Primitive Data Structure,D
+Non Primitive data Structures are those which define set of _________.,Static Elements,Primitive Elements,Derived Elements,None of these,C
+If elements of the data structure forms a sequence of list then it is called as ____________.,Linear data structure,Non-primitive data structure,Primitive data structure,None of these,A
+"Data Structure in which one predecessor may have one or more successor , that data structure is called as __________.",Non Linear Data Structure,Linear Data Structure,Primitive Data Structure,Non Primitive Data Structure,A
+An ADT is defined to be a mathematical model of a user-defined type along with the collection of all ____________ operations on that model,Primitive,Structured,Cardinality,Assignment,A
+Which of the following abstract data types can be used to represent a many to many relation?,Plex,Graph,Both (a) and (b),Tree,C
+Rate at which cost of algorithm grows as size of its input grows is called its,Input growth,Outcome growth,Growth rate,Processing rate,C
+Critical resource for a program is most often its,Running time,Compile time,Storage,Testing time,A
+"A growth rate of n, is referred to as",Absolute growth rate,Linear growth rate,Exponential growth rate,Quadratic growth rate,B
+Algorithm that begins with First position in array and looks at each value in turn until it is found is known to be,Linear seaching,Binary searching,Sequential searching,Tree searching,C
+Efficiency of an algorithm is measured by,Absolute analysis,Cost analysis,Relative analysis,Asymptotic analysis,D
+An algorithm with running-time of a highest-order term containing a factor of n^2 is said to have a,Quadratic growth rate,Exponential growth rate,Absolute growth rate,Linear growth rate,A
+An analysis that estimates resource consumption of an algorithm is known to be,Relative analysis,Absolute analysis,Asymptotic analysis,Cost analysis,C
+Implementation of operations associated with an ADT is done by a,Member function,Member type,Member object,Member data-type,A
+Data types are of form,Physical,Logical,Both a and b,Composite,C
+A data structure requires a certain amount of space for each,Data process,Data movement,Data item,Data action,C
+ADT stands for,Array data type,Actual data type,Abstract data type,Assertion data type,C
+Defining a data type in terms of an ADT is of form,Logical,Physical,Composite,Visual,A
+An ADT and data related to its implementation together make up a,Type,Class,Object,Member,B
+A collection of values are known as,Chain,Type,Stack,Array,B
+Data types formation can be of,2 types,3 types,4 types,5 types,A
+An ADT doesn't specify implementation of,Class,Operations,Datatype,Interface,C
+"For selecting a data structure, approach to be followed is known as",Two-step approach,Three-step approach,Four-step approach,Five-step approach,B
+Implementing a data type as a data structure is of form,Composite,Logical,Physical,Absolute,C
+"Records can be accessed by unique numbers, that are known to be",Record-match query,Exact-match query,Data-match query,Query-match,B
+Interface of ADT can be defined in terms of,Type,Set of operations,Set of assertions,Both a and b,D
+Term that makes realization of a data type as a software component is called,Actual data type,Abstract data type,Visual data type,Component data type,B
+A record is modifiable only when medication does not affect its,Resource requirements,Degradation requirements,Space requirements,Reference requirements,C
+A solution is assumed to be efficient if it is able to solve problem within required,Constraints,Processing,Decision making,Developers,A
+An implementation for an ADT is called,Data process,Data movement,Data structure,Data member,C
+"Data structure that allows extremely fast exact-match search, is known to be",Arrays,Pointers,Stacks,Hash tables,D
+A data item can be thought of a member of a,Type,Function,Standard,Structure,A
+"Data structure that support efficient insertion of new records, is said to be",Array,Hash table,Pointer,Stack,B
+"A record or a piece of information whose value is generated from a type, is called",Data process,Data movement,Data action,Data item,D
+"Space requirement of a data item, defined by its variables are referred to as",Data structure,Data process,Data object,Data member,D
+A function or a mapping of inputs to outputs is called,Process,Program,Algorithm,Problem,D
+"In mathematical means, problems can be viewed as",Operations,Functions,Mechanism,Design pattern,B
+"In a function, values that make up an input are known to be",Member,Domain,Instances,Parameters,D
+An instantiation of an algorithm in a computer programming language is called,Algorithm,Problem solving,Program,Process method,C
+A given algorithm is able to compute,2 functions only,Particular function,Multiple functions,Infinite functions,B
+A function can be thought as a matching between,Inputs,Outputs,Parameters,Both a and b,D
+"For parameters, a specific selection of values is called",Parameters,Instances,Member,Entity,B
+A problem definition should not include any,Inputs,Outputs,Constraints,Steps,C
+Operation(s) that an algorithm must fulfill is/are,Compute the function,Convert each input to correct output,Intented functional parameters,All of the above,D
+An algorithm is composed of a series of,Steps,Structures,Domains,Architectures,A
+A task to be performed is known as,Operation,Work,Function,Problem,D
+Number of steps composed by an algorithm should be,10,20,Finite,Infinite,C
+In problem solving solution defined constraints should be of form,Inputs and outputs,How the problem should be solved,Used Resources,Used Mechanisms,C
+Outputs of a function can also be referred to,Instances,Parameters,Range,Domain,C
+An implementation for function that transforms an input to corresponding output is called,Algorithms,Program,Pattern,Processing,A
+An algorithm must have,Correct guidelines,Infinite length,Termination,Both a and b,D
+Process of following a method to solve a problem is called a/an,Program,Processing,Algorithm,Pattern,C
+Inputs of a function can also be referred to,Domain,Range,Parameters,Instances,A
+A relation that can be used to partition a set into equivalence classes is called,Symmetric,Asymmetric,Equivalence,Non-equivalence,C
+If a binary relation is antisymmetric and transitive is referred to as,Impartial order,Partial order,Comparable order,Non-comparable order,B
+A sequence is also referred to as a,Tuple,Instsance,Domain,Attribute,A
+Duplicate-valued elements can be attributed in a,Set,Entities,Sequence,Structure,C
+Each member of a set can be thought of an/a,Primitive element of type,Set itself,Both a and b,Data element of set,C
+A collection of elements having an specific order is called,Program,Sequence,Structure,Relation,B
+Total order is also called,Uniform order,Static order,Linear order,Paired order,C
+"If every pair of distinct elements in a partial order are comparable, then order is called a",Total order,Partial order,Non-comparable order,Comparable order,A
+Members of a set are drawn from a larger population known as,Data type,Primitive type,Compound type,Base type,D
+Set on which partial order is defined is called,Poset,Relation,Sequence,Coset,A
+Relation between two sets P and Q in qiven form is P ⊂ Q is,P is subset of Q,Q is subset of P,All Elements are equal,None of Elements are equal,A
+A collection of distinguishable members or elements is known to be,Set,Combination,Composition,Collaboration,A
+A set cannot have,Unique values,Uniform values,Duplicate values,Sequenced values,C
+R is an equivalence relation on set S if it has property of,Reflexive,Symmetric,Transitive,All of the above,D
+"Sum of reciprocals from 1 to n, called",Hammer series,Recurrence series,Non-recurrence series,Harmonic series,D
+Relation defining a function by means of an expression that includes one or more instances of itself is known to be,Structured relation,Recurrence relation,Sequenced relation,Absolute relation,B
+Factorial's definition contains a recursive part and,Data cases,Symmetric case,Reflexive cases,Base cases,D
+Recurrence relations are widely used for modelling cost of,Non-recurrence functions,Asymmetric functions,Recurrence functions,Symmetric functions,C
+Which of the following criterion is NOT written using the proper syntax?,“Haris”,<500,NO VALUE,Between #1/1/2000# and #12/31/2000#,C
+"How many cases are there, which are used to compare various data structure's execution time in a relative manner?",2,3,4,5,B
+"In Average case, if operation takes f(n) time in execution, then m operations will take?",(n),f(m),mf(n),nf(m),C
+__________ is a single elementary unit of information representing an attribute of an entity.,Entity Set,Record,File,Field,D
+What is true about Interface in data structure?,Each data structure has an interface.,Interface represents the set of operations that a data structure supports.,"An interface only provides the list of supported operations, type of parameters they can accept and return type of these operations.",All of the above,D
+Which of the following is not a Characteristics of a Data Structure?,Completeness,Correctness,Time Complexity,Space Complexity,A
+Which characteristics shows that running time or the execution time of operations of data structure must be as small as possible?,Completeness,Correctness,Time Complexity,Space Complexity,C
+Data items that cannot be divided are called as?,Group Items,Attribute and Entity,Elementary Items,File items,C
+Which of the following analysis known as theoretical analysis of an algorithm?,A Posterior Analysis,A Priori Analysis,A Feasibility Analysis,A Independent Analysis,B
+Which of the following analysis known as empirical analysis of an algorithm?,A Posterior Analysis,A Priori Analysis,A Feasibility Analysis,A Independent Analysis,A
+O(1) means computing time is __________________,Constant,Quadratic,Linear,Cubic,A
+The time factor when determining the efficiency of algorithm is measured by?,Counting microseconds,Counting the number of key operations,Counting the number of statements,Counting the kilobytes of algorithm,B
+In an array representation of binary tree the right child of root will be at location of?,2,3,4,6,B
+The upper bound on the time complexity of the nondeterministic sorting algorithm is?,O(n),O(n log n),O(1),O( log n),A
+"In analysis of algorithm, approximate relationship between the size of the job and the amount of work required to do is expressed by using _________.",Central tendency,Differential equation,Order of magnitude,Order of execution,D
+What is the type of the algorithm used in solving the 8 Queens problem?,Backtracking,Dynamic,Branch and Bound,both a and b,A
+Which of the following belongs to the algorithm paradigm?,Minimum & Maximum problem,Knapsack problem,Selection problem,Merge sort,B
+The [] notation is,Symmetric,Reflexive,Transitive,All of the above,D
+_______ is the process of encoding information using fewer bits than the original representation.,Data loss,Data compression,Data transmit,Data gain,B
+How many types of compression there?,4,3,2,5,C
+Which compression loses data?,Lossy compression,Lossless compression,both a and b,None of the above,A
+Which of the following is Lossless Data Compression Algorithms?,LZ77,LZR,DEFLATE,All of the above,D
+Lossy compression reduces bits by removing unnecessary or less important information.,TRUE,FALSE,May be True or False,Can't Say,A
+Which of the following is true about LempelZivWelch (LZW) algorithm?,Optimized for compressing plain text,Used by GIF images and Unix's compress utility,Used by WinRAR in tandem with Huffman coding,"used by ZIP, gzip, and PNG images",B
+"Which of the following algorithms has very high compression ratio, used by 7zip and xz?",LZSS,LZO,LZMA,LZW,C
+Uncompressed video requires a ________ data rate.,high,low,medium,very high,D
+Which of the following is not a audio compression algorithms?,ALAC,DST,JSAC,OSQ,C
+"Lossyimage compressionis used indigital cameras, to increase storage capacities.",TRUE,FALSE,May be True or False,Can't Say,A
