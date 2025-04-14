@@ -1,15 +1,3 @@
-'''
-Grabbing Questions
-
-TODO: Allow users to select their subject, this subject will then decide which table to obtain question from.
-    Subjects: All, Tech-Trivia, Algorithms, Networking, CyberSecurity, AI & Machine Learning
-TODO: Look into putting functionality to grab a random question into a different file
-
-Checking Questions
-TODO: Add functionality to grab answers from user. If a conditional is already in place to only allow 1 question per channel. 
-        Then this should only need to check the channel to obtain the current question.
-''' 
-
 import discord
 import os
 import datetime, time
@@ -78,18 +66,18 @@ STEP 3: ASYNCRONOUS OBSERVER FOR COMMANDS ON THE SERVER
 )
 @app_commands.choices(
     month=[
-        app_commands.Choice(name="January", value="1"),
-        app_commands.Choice(name="February", value="2"),
-        app_commands.Choice(name="March", value="3"),
-        app_commands.Choice(name="April", value="4"),
-        app_commands.Choice(name="May", value="5"),
-        app_commands.Choice(name="June", value="6"),
-        app_commands.Choice(name="July", value="7"),
-        app_commands.Choice(name="August", value="8"),
-        app_commands.Choice(name="September", value="9"),
-        app_commands.Choice(name="October", value="10"),
-        app_commands.Choice(name="November", value="11"),
-        app_commands.Choice(name="December", value="12"),
+        app_commands.Choice(name="January", value=1),
+        app_commands.Choice(name="February", value=2),
+        app_commands.Choice(name="March", value=3),
+        app_commands.Choice(name="April", value=4),
+        app_commands.Choice(name="May", value=5),
+        app_commands.Choice(name="June", value=6),
+        app_commands.Choice(name="July", value=7),
+        app_commands.Choice(name="August", value=8),
+        app_commands.Choice(name="September", value=9),
+        app_commands.Choice(name="October", value=10),
+        app_commands.Choice(name="November", value=11),
+        app_commands.Choice(name="December", value=12),
     ],
     hour=[
         app_commands.Choice(name=f"{i:02d}:00", value=i) for i in range(0, 24)
@@ -99,16 +87,15 @@ async def announcement(interaction: discord.Interaction, month: app_commands.Cho
     """
     Returns:
         None (Command)
-
     Parameters:
         interaction (Interaction):      The interaction that triggered the command
-        month app_commands.Choice[int]: Date and time to send the message
+        month app_commands.Choice[int]: Month selected to send the message
         day (int):                      Day of the month between 1-31
-        hour app_commands.Choice[int]:    
+        hour app_commands.Choice[int]:  Hour selected between 0-23
         message (str):                  The message to announce at a later date
 
     Functionality:
-        (To be implemented) Announces the message at the specified date and time. 
+        (To be implemented) Announces the message at the specified date and time within the current year. 
     """
     try:
         await interaction.response.send_message("ACM is currently working on this command. Please be patient.")
