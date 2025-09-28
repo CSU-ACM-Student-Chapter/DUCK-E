@@ -1,5 +1,5 @@
 # DUCK-E
-DUCK-E is a fun and interactive bot designed for Computer Science and tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst amongst server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project.
+DUCK-E is a fun and interactive bot designed for Computer Science and tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst its server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project. :)
 
 ## Commands
 - **/announcement** (Planned) Announces the message at the specified date and time.
@@ -11,17 +11,21 @@ DUCK-E is a fun and interactive bot designed for Computer Science and tech commu
 # Getting Started
 All code should be tested and approved by a 2nd developer prior to integrating code with main. To test, please walkthrough the information listed on how to get started locally.
 
+## Grabbing the repo
+Create a branch based off main. It is recommended to name it after the task being done but `{Name}s First Bot` will suffice if unsure of what to pick up.
+ 
 ## Optional:
-
 #### Virual Environment
 - A python virtual environment to run on
-    -`python -m venv myenv`
+    - `python -m venv myenv`
 
 ## Required:
 
 #### Python
 - Python 3.9+
-- Packages: `pip install requirements.txt -r`
+- Packages
+    - `pip install requirements.txt -r`
+    - **Warning :warning::** If skipped and package versions are off far enough, your code may break once pushed to production. Please be cautious of this when skipping this command.
 
 #### Discord Bot
 - Add a *.env* file
@@ -30,15 +34,19 @@ All code should be tested and approved by a 2nd developer prior to integrating c
     - We'll come back here shortly to enter this token
 - Creating a discord bot token and bot placed
 on a server for testing
+    - This video will kindly walk you through all the needed steps.
+    [Creating a Discord Bot in Python (2025) | Episode 1: Setup & Basics](https://www.youtube.com/watch?v=CHbN_gB30Tw)
+        - No need to implement their code, although all is helpful and recommended for beginners to watch
+        - **Key time stamps:** 1:15-7:15, 13:51-16:10
+        - **Note:** In the 2nd portion, you will instead add your token to *.env*
 
-## Putting it all together 
-- Run *main\.py*
-    - `py main.py`
-
-- Open the [Issues Tab](https://github.com/CSU-ACM-Student-Chapter/DUCK-E/labels) and look for **good first issue**
+## Going past the first run 🫡
+- Open the [Issues Tab](https://github.com/CSU-ACM-Student-Chapter/DUCK-E/labels) and look for **good first issue**. This will help you gain good footing and understanding of the repo while still contributing to important tasks.
+    - Once complete, submit a PR and notify the *@Bot Programmer* role members in the ACM discord, a kept up to date link of our discord channel is provided [here](https://csuinvolve.columbusstate.edu/organization/computermachinery).
+- Feel free to read up on some other issues, TODOs, and discussion plans. Your help is greatly appreciated!! <3
 
 # Future Features
-For more information on features please refer to the [Issues Tab](https://github.com/CSU-ACM-Student-Chapter/DUCK-E/labels)
+For more information on features please refer to the [Issues Tab](https://github.com/CSU-ACM-Student-Chapter/DUCK-E/labels). At a high level this will provide a(n):
 
 - Interactive Command Prompt
 - Member Points System
