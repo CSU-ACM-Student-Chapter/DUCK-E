@@ -70,4 +70,4 @@ class Website_Filter():
             return True
 
 WF = Website_Filter()
-print(WF.has_SafeMsgLinks('Accepted_Links.txt','apple dsfjisdalkdf www.youtube.com'))
+print(WF.has_SafeMsgLinks('cogs/resources/accepted_links.txt','apple dsfjisdalkdf www.youtube.com'))
