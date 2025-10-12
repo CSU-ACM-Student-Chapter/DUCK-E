@@ -1,5 +1,8 @@
 # https://www.reddit.com/r/Discord_Bots/comments/wcqdfh/how_to_import_commands_from_a_cog_within_a_cog/
 from discord.ext import commands
+import logging
+
+_log = logging.getLogger(__name__)
 
 class Points(commands.Cog):
 

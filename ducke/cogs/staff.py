@@ -1,5 +1,8 @@
 from discord.ext import commands
 from discord import app_commands, Interaction, InteractionResponded
+import logging
+
+_log = logging.getLogger(__name__)
 
 class Staff(commands.Cog):
 
@@ -31,24 +34,11 @@ class Staff(commands.Cog):
             app_commands.Choice(name=f"{i:02d}:00", value=i) for i in range(0, 24)
         ]
     )
-    async def announcement(self, interaction: Interaction, month: app_commands.Choice[int], day: int, hour: app_commands.Choice[int], message: str) -> None:
-        """
-        Returns:
-            None (Command)
-        Parameters:
-            interaction (Interaction):      The interaction that triggered the command
-            month app_commands.Choice[int]: Month selected to send the message
-            day (int):                      Day of the month between 1-31
-            hour app_commands.Choice[int]:  Hour selected between 0-23
-            message (str):                  The message to announce at a later date
-
-        Functionality:
-            (To be implemented) Announces the message at the specified date and time within the current year. 
-        """
+    async def announcement(self, interaction: Interaction, month: int, day: int, hour: int, message: str) -> None:
         try:
             await interaction.response.send_message("ACM is currently working on this command. Please be patient.")
         except Exception as e:
-            print(f"[ERROR in /announcement] {e}")
+            _log.exception(f"[ERROR in /announcement]")
             try:
                 await interaction.followup.send("❌ Something went wrong while making the announcement.")
             except InteractionResponded:
