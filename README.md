@@ -3,7 +3,6 @@ DUCK-E is a fun and interactive bot designed for Computer Science and tech commu
 
 ## Commands
 - **/announcement** (Planned) Announces the message at the specified date and time.
-- **/echo** Echoes the user's message in uppercase, original, and lowercase formats.
 - **/ping** Tests bot latency. Helpful for performing health checks on the server.
 - **/question** Posts a random multiple-choice question from a selected topic, allows reactions, and evaluates answers.
 - **/quiz** (Planned) Provides 10 random questions from a selected topic as a quiz format. Great for studying!
