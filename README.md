@@ -1,11 +1,17 @@
+TODO: Refer to [Discord rubbergod bot](https://github.com/vutfitdiscord/rubbergod/blob/main/README.md) for additional readme contents
+
 # DUCK-E
-DUCK-E is a fun and interactive bot designed for Computer Science and tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst its server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project. :grinning:
+DUCK-E is a fun and interactive bot designed for Computer Science and Tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst its server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project. :grinning:
 
 ## Commands
 - **/announcement** (Planned) Announces the message at the specified date and time.
 - **/ping** Tests bot latency. Helpful for performing health checks on the server.
 - **/question** Posts a random multiple-choice question from a selected topic, allows reactions, and evaluates answers.
-- **/quiz** (Planned) Provides 10 random questions from a selected topic as a quiz format. Great for studying!
+- **/question-flash-events** 'Quick event' questions are sent at random within a repeating frame that will continue until closed out by a mod or admin. 
+- **/quiz** Posts multiple random questions from the chosen topic into a dedicated thread within the interactions channel. Great for studying!
+> [!INFO]
+> /question-flash-events and /quiz are currently not in production
+> /question-flash-events requires an end-task command which is currently not implemented.
 
 # Getting Started
 All code should be tested and approved by a 2nd developer prior to integrating code with main. To test, please walkthrough the information listed on how to get started locally.

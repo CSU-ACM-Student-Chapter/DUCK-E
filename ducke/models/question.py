@@ -24,7 +24,7 @@ class Question:
         self.answer_list = [a, b, c, d]
         self.answer_emojis = ['🇦', '🇧', '🇨', '🇩']
         
-        self.formatted_question = f"**{self.question}**\n\
+        self.formatted_question = f"**Q{self.question_number} {self.question}**\n\
             **A:** {self.answer_list[0]}\n\
             **B:** {self.answer_list[1]}\n\
             **C:** {self.answer_list[2]}\n\
@@ -43,13 +43,14 @@ class Question:
         winners = await self._correct_reacts(message, cheaters)
 
         cheaters_message, winners_message = await self._build_question_response(cheaters, winners)
-
-        if cheaters:
-            await message.channel.send(cheaters_message)
-        
+   
+        await message.reply(f"**Q{self.question_number} Answer:** {self.answer_emojis[self.answer]} {self.answer_list[self.answer]}")
         await message.channel.send(winners_message)
-        await message.channel.send(f"**Q{self.question_number} Answer:** {self.answer_emojis[self.answer]} {self.answer_list[self.answer]}")
-
+        
+        if cheaters:
+            if message._thread:
+                await message.channel.send(cheaters_message)
+            
     # Find any users that gave more two reactions           
     async def _duplicate_reacts(self, message: Message) -> list:
         users_list = []
@@ -65,7 +66,7 @@ class Question:
         return list(duplicates)
 
     # Find users that gave a matching reaction and do not appear in the list of cheaters
-    async def _correct_reacts(self, message: Message,  cheaters: set) -> list:
+    async def _correct_reacts(self, message: Message, cheaters: set) -> list:
         correct_users = set()
         for reaction in message.reactions:
             if (reaction.emoji == self.answer_emojis[self.answer]):
