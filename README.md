@@ -9,7 +9,7 @@ DUCK-E is a fun and interactive bot designed for Computer Science and Tech commu
 - **/question** Posts a random multiple-choice question from a selected topic, allows reactions, and evaluates answers.
 - **/question-flash-events** 'Quick event' questions are sent at random within a repeating frame that will continue until closed out by a mod or admin. 
 - **/quiz** Posts multiple random questions from the chosen topic into a dedicated thread within the interactions channel. Great for studying!
-> [!INFO]
+> [!NOTE]
 > /question-flash-events and /quiz are currently not in production
 > /question-flash-events requires an end-task command which is currently not implemented.
 
