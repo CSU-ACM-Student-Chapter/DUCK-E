@@ -11,6 +11,7 @@ DUCK-E is a fun and interactive bot designed for Computer Science and Tech commu
 - **/quiz** Posts multiple random questions from the chosen topic into a dedicated thread within the interactions channel. Great for studying!
 > [!NOTE]
 > /question-flash-events and /quiz are currently not in production
+> 
 > /question-flash-events requires an end-task command which is currently not implemented.
 
 # Getting Started
