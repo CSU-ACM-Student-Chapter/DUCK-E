@@ -19,9 +19,9 @@ class Admin(commands.Cog):
         except:
             _log.exception(f"[ERROR in /sync]")
             try:
-                await interaction.followup.send("❌ Something went wrong while trying to sync commands.")
+                await interaction.followup.send("❌ Something went wrong while trying to sync commands.", ephemeral=True)
             except InteractionResponded:
-                pass
+                pass  
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Admin(bot))

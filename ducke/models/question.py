@@ -4,6 +4,7 @@ import re
 from discord import Message
 from discord.ext import commands
 from ..constants import constants
+import ducke.cogs.points as points_cog
 
 class Question:
     
@@ -48,8 +49,26 @@ class Question:
         await message.channel.send(winners_message)
         
         if cheaters:
-            if message._thread:
-                await message.channel.send(cheaters_message)
+            await message.channel.send(cheaters_message)
+
+    async def generate_question_response_with_points(self, message: Message, points: int) -> None:
+        cheaters = await self._duplicate_reacts(message)
+        winners = await self._correct_reacts(message, cheaters)
+
+        cheaters_message, winners_message = await self._build_question_response(cheaters, winners)
+   
+        await message.reply(f"**Q{self.question_number} Answer:** {self.answer_emojis[self.answer]} {self.answer_list[self.answer]}")
+        
+        if winners:
+            for winner in winners:
+                points_cog.add_points(winner.id, points)
+        
+        await message.channel.send(winners_message)
+        
+        if cheaters:
+            for cheater in cheaters:
+                points_cog.remove_points(cheater.id, points)
+            await message.channel.send(cheaters_message)
             
     # Find any users that gave more two reactions           
     async def _duplicate_reacts(self, message: Message) -> list:

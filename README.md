@@ -1,5 +1,3 @@
-TODO: Refer to [Discord rubbergod bot](https://github.com/vutfitdiscord/rubbergod/blob/main/README.md) for additional readme contents
-
 # DUCK-E
 DUCK-E is a fun and interactive bot designed for Computer Science and Tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst its server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project. :grinning:
 
@@ -11,7 +9,6 @@ DUCK-E is a fun and interactive bot designed for Computer Science and Tech commu
 - **/quiz** Posts multiple random questions from the chosen topic into a dedicated thread within the interactions channel. Great for studying!
 > [!NOTE]
 > /question-flash-events and /quiz are currently not in production
-> 
 > /question-flash-events requires an end-task command which is currently not implemented.
 
 # Getting Started

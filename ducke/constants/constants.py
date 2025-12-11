@@ -30,3 +30,12 @@ RESOURCES_QUESTIONS_NETWORKING_BASICS_FILE=os.path.join(os.getcwd(), f'ducke\\re
 RESOURCES_RESPONSES_QUESTION_CHEATER= os.path.join(os.getcwd(), f'ducke\\resources\\responses\\question_cheater.txt')
 RESOURCES_RESPONSES_QUESTION_CORRECT= os.path.join(os.getcwd(), f'ducke\\resources\\responses\\question_correct.txt')
 RESOURCES_RESPONSES_QUESTION_INCORRECT= os.path.join(os.getcwd(), f'ducke\\resources\\responses\\question_incorrect.txt')
+
+ACCESS_REQUEST_MESSAGE="❌ I don't have permissions to complete this command in this channel. Please grant access in the Discord Developer Portal."
+
+POINTS_DB_PATH=os.path.join(os.getcwd(), f'ducke\\resources\\database\\points.db')
+FLASH_EVENTS_DB_PATH=os.path.join(os.getcwd(), f'ducke\\resources\\database\\flash_events.db')
+
+MINUTE_IN_SECONDS=60
+HOUR_IN_SECONDS=3600
+DAY_IN_SECONDS=86400
