@@ -77,7 +77,7 @@ class Questions(commands.Cog):
             await self.start_flash_event(channel, subject, seconds_to_answer, 100)
         
         except:
-            _log.exception(f"[ERROR in /flash-events-]")
+            _log.exception(f"[ERROR in /flash-events-start]")
             try:
                 await interaction.followup.send("❌ Something went wrong while processing the question.")
             except InteractionResponded:

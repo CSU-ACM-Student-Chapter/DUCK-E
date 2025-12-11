@@ -1,15 +1,19 @@
 # DUCK-E
-DUCK-E is a fun and interactive bot designed for Computer Science and Tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst its server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project. :grinning:
+DUCK-E is a fun and interactive bot designed for Computer Science and Tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst its server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project. 😄
 
 ## Commands
-- **/announcement** (Planned) Announces the message at the specified date and time.
-- **/ping** Tests bot latency. Helpful for performing health checks on the server.
-- **/question** Posts a random multiple-choice question from a selected topic, allows reactions, and evaluates answers.
-- **/question-flash-events** 'Quick event' questions are sent at random within a repeating frame that will continue until closed out by a mod or admin. 
-- **/quiz** Posts multiple random questions from the chosen topic into a dedicated thread within the interactions channel. Great for studying!
-> [!NOTE]
-> /question-flash-events and /quiz are currently not in production
-> /question-flash-events requires an end-task command which is currently not implemented.
+### Trivia and Studying
+- _**/flash-events-start**_ One 'Quick event' question will be sent at random on a daily occurence. Those on that're able to answer quickly and correctly will be rewarded a generous amount of server points.
+- _**/flash-events-stop**_ Stops the flash-events in the channel where the command was given. **(Admin Only)**
+- _**/question**_ Posts a random multiple-choice question from a selected topic, allows reactions, and evaluates answers.
+- _**/quiz**_ Posts multiple random questions from the chosen topic into a dedicated thread within the interactions channel. Great for studying!
+### Member Points
+- _**/add-points**_ Provided the user and amount of points. Will add the given the amount to the named user. **(Admin Only)**
+- _**/leaderboard**_ Returns the Top 10 Users with the highest point value
+- _**/my-points**_ Returns user points
+- _**/remove-points**_ Provided the user and amount of points. Will remove the given the amount from the named user. **(Admin Only)**
+### Client Server Comms
+- _**/ping**_ Tests bot latency. Helpful for performing health checks on the server.
 
 # Getting Started
 All code should be tested and approved by a 2nd developer prior to integrating code with main. To test, please walkthrough the information listed on how to get started locally.
@@ -49,12 +53,13 @@ on a server for testing
 - Feel free to read up on some other issues, TODOs, and discussion plans. Your help is greatly appreciated!! :heart:
 
 # Future Features
-For more information on features please refer to the [Issues Tab](https://github.com/CSU-ACM-Student-Chapter/DUCK-E/labels). At a high level this will provide a(n):
+For more information on planned features please refer to the [Issues Tab](https://github.com/CSU-ACM-Student-Chapter/DUCK-E/labels).
+At a high level this will provide:
 
-- Interactive Command Prompt
-- Member Points System
-- Club Info Reporting
-- Daily Trivia Question Posts
+- Personal studying material - /add-subject, /remove-subjuct
+- Club Info Reporting - /announcements
+- Board Games - /start-{game}
+- Board Game Server Tournaments - /start-{game}-tournament
 
 # Credits
 DUCK-E picture: [flikr - Jo Blakely](https://flickr.com/photos/pickledjo/)
