@@ -21,7 +21,7 @@ class Points(commands.Cog):
     @app_commands.command(name="my-points", description="Check your points.")
     async def points(self, interaction: Interaction):
         try:
-            points = format(get_points(interaction.user.id))
+            points = format_points(get_points(interaction.user.id))
             await interaction.response.send_message(f"{interaction.user.mention}, you have {points} points.", ephemeral=True)
         except Exception as e:
             _log.exception(f"[ERROR in /my-points]")
@@ -57,8 +57,8 @@ class Points(commands.Cog):
             if not interaction.user.guild_permissions.administrator:
                 await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
                 return
-            points_added = format(add_points(member.id, points))
-            await interaction.response.send_message(f"{points_added} points have been added to {member.mention}.")
+            add_points(member.id, points)
+            await interaction.response.send_message(f"{format_points(points)} points have been added to {member.mention}.")
         except:
             _log.exception(f"[ERROR in /add-points]")
             try:
@@ -73,8 +73,8 @@ class Points(commands.Cog):
             if not interaction.user.guild_permissions.administrator:
                 await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
                 return
-            points_removed = format(remove_points(member.id, points))
-            await interaction.response.send_message(f"{points_removed} points have been removed from {member.mention}.")
+            remove_points(member.id, points)
+            await interaction.response.send_message(f"{format_points(points)} points have been removed from {member.mention}.")
         except:
             _log.exception(f"[ERROR in /remove-points]")
             try:
