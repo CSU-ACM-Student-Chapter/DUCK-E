@@ -1,24 +1,28 @@
-from discord.ext import commands, tasks
+from discord.ext import commands
 from discord import app_commands, Interaction, InteractionResponded, Member
-import logging, sqlite3
-from ..constants import constants
+import os, logging, mysql.connector
 
 _log = logging.getLogger(__name__)
-conn = sqlite3.connect(constants.POINTS_DB_PATH)
+
+conn = mysql.connector.connect(
+    host=os.getenv('DATABASE_HOSTNAME'),
+    user=os.getenv('DATABASE_USERNAME'),
+    password=os.getenv('DATABASE_PASSWORD'),
+    database=os.getenv('DATABASE_NAME')
+)
 cursor = conn.cursor()
-cursor.execute('''CREATE TABLE IF NOT EXISTS points (user_id INTEGER PRIMARY KEY, points INTEGER DEFAULT 0)''')
-conn.commit()
+cursor.execute('''CREATE TABLE IF NOT EXISTS points (user_id BIGINT PRIMARY KEY, points INT DEFAULT 0)''')
 
 class Points(commands.Cog):
 
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @app_commands.command(name="my-points", description="Check your points.")
     async def points(self, interaction: Interaction):
         try:
-            points = get_or_initialize_user_points(interaction.user.id)
-            await interaction.response.send_message(f"{interaction.user.mention}, you have {format_points(points)} points.", ephemeral=True)
+            points = format(get_points(interaction.user.id))
+            await interaction.response.send_message(f"{interaction.user.mention}, you have {points} points.", ephemeral=True)
         except Exception as e:
             _log.exception(f"[ERROR in /my-points]")
             try:
@@ -39,7 +43,7 @@ class Points(commands.Cog):
                 await interaction.response.send_message(leaderboard_message)
             else:
                 await interaction.response.send_message("No points have been recorded yet.")
-        except Exception as e:
+        except:
             _log.exception(f"[ERROR in /leaderboard]")
             try:
                 await interaction.followup.send("❌ Something went wrong while fetching the leaderboard.", ephemeral=True)
@@ -53,9 +57,9 @@ class Points(commands.Cog):
             if not interaction.user.guild_permissions.administrator:
                 await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
                 return
-            add_points(member.id, points)
-            await interaction.response.send_message(f"{format_points(points)} points have been added to {member.mention}.")
-        except Exception as e:
+            points_added = format(add_points(member.id, points))
+            await interaction.response.send_message(f"{points_added} points have been added to {member.mention}.")
+        except:
             _log.exception(f"[ERROR in /add-points]")
             try:
                 await interaction.followup.send("❌ Something went wrong while adding points.", ephemeral=True)
@@ -69,9 +73,9 @@ class Points(commands.Cog):
             if not interaction.user.guild_permissions.administrator:
                 await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
                 return
-            remove_points(member.id, points)
-            await interaction.response.send_message(f"{format_points(points)} points have been removed from {member.mention}.")
-        except Exception as e:
+            points_removed = format(remove_points(member.id, points))
+            await interaction.response.send_message(f"{points_removed} points have been removed from {member.mention}.")
+        except:
             _log.exception(f"[ERROR in /remove-points]")
             try:
                 await interaction.followup.send("❌ Something went wrong while removing points.", ephemeral=True)
@@ -82,27 +86,27 @@ async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Points(bot))
 
 # Fetch or initialize points for a user
-def get_or_initialize_user_points(user_id, formatted=False) -> int:
-    cursor.execute("SELECT points FROM points WHERE user_id = ?", (user_id,))
+def get_points(user_id) -> int:
+    cursor.execute("SELECT points FROM points WHERE user_id = %s", (user_id,))
     result = cursor.fetchone()
     if result:
         return result[0]
     else:
-        cursor.execute("INSERT INTO points (user_id, points) VALUES (?, ?)", (user_id, 0))
+        cursor.execute("INSERT INTO points (user_id, points) VALUES (%s, %s)", (user_id, 0))
         conn.commit()
         return 0
 
 # Add points to a user
 def add_points(user_id: int, points: int) -> None:
-    current_points = get_or_initialize_user_points(user_id)
-    cursor.execute("UPDATE points SET points = ? WHERE user_id = ?", (current_points + points, user_id))
+    current_points = get_points(user_id)
+    cursor.execute("UPDATE points SET points = %s WHERE user_id = %s", (current_points + points, user_id))
     conn.commit()
 
 # Remove points from a user
 def remove_points(user_id: int, points: int) -> None:
-    current_points = get_or_initialize_user_points(user_id)
+    current_points = get_points(user_id)
     new_points = max(0, current_points - points)
-    cursor.execute("UPDATE points SET points = ? WHERE user_id = ?", (new_points, user_id))
+    cursor.execute("UPDATE points SET points = %s WHERE user_id = %s", (new_points, user_id))
     conn.commit()
 
 # Format points with commas

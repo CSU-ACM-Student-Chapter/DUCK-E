@@ -6,7 +6,7 @@ _log = logging.getLogger(__name__)
 
 class Meta(commands.Cog):
     
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @app_commands.command(name="ping", description="Get the bots Latency")

@@ -56,10 +56,11 @@ on a server for testing
 For more information on planned features please refer to the [Issues Tab](https://github.com/CSU-ACM-Student-Chapter/DUCK-E/labels).
 At a high level this will provide:
 
-- Personal studying material - /add-subject, /remove-subjuct
-- Club Info Reporting - /announcements
-- Board Games - /start-{game}
-- Board Game Server Tournaments - /start-{game}-tournament
+- Personal studying material - _/add-subject_, _/remove-subjuct_
+- Study Progress Tracking - _/quiz-progress-chart_
+- Club Info Reporting - _/announcements_
+- Board Games - _/start-game_
+- Board Game Server Tournaments - /start-game-tournament
 
 # Credits
 DUCK-E picture: [flikr - Jo Blakely](https://flickr.com/photos/pickledjo/)

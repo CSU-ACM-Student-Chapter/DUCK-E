@@ -6,7 +6,7 @@ _log = logging.getLogger(__name__)
 
 class Staff(commands.Cog):
 
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
     
     @app_commands.command(name="announcements", description="Schedule an announcement for the server.")
@@ -37,7 +37,7 @@ class Staff(commands.Cog):
     async def announcement(self, interaction: Interaction, month: int, day: int, hour: int, message: str) -> None:
         try:
             await interaction.response.send_message("ACM is currently working on this command. Please be patient.")
-        except Exception as e:
+        except:
             _log.exception(f"[ERROR in /announcement]")
             try:
                 await interaction.followup.send("❌ Something went wrong while making the announcement.")

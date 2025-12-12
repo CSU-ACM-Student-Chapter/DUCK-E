@@ -33,8 +33,8 @@ RESOURCES_RESPONSES_QUESTION_INCORRECT= os.path.join(os.getcwd(), f'ducke\\resou
 
 ACCESS_REQUEST_MESSAGE="❌ I don't have permissions to complete this command in this channel. Please grant access in the Discord Developer Portal."
 
-POINTS_DB_PATH=os.path.join(os.getcwd(), f'ducke\\resources\\database\\points.db')
-FLASH_EVENTS_DB_PATH=os.path.join(os.getcwd(), f'ducke\\resources\\database\\flash_events.db')
+POINTS_DB_PATH=os.path.join(os.getcwd(), f'ducke\\resources\\database\\points.db') #For local testing with sqlite
+FLASH_EVENTS_DB_PATH=os.path.join(os.getcwd(), f'ducke\\resources\\database\\flash_events.db')  #For local testing with sqlite
 
 MINUTE_IN_SECONDS=60
 HOUR_IN_SECONDS=3600
