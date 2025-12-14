@@ -285,7 +285,7 @@ class Questions(commands.Cog):
                 )
                 self.flash_events[channel.id] = flash_event
                 await flash_event.restart()
-                _log.info(f"Restarted flash event in channel ID {channel_id}")
+                _log.info(f"Restarted flash event in Channel: {channel.name} ID: {channel_id}")
 
 async def setup(bot: commands.Bot) -> None:  
     await bot.add_cog(Questions(bot))
