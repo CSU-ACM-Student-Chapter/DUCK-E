@@ -1,5 +1,5 @@
 # DUCK-E
-DUCK-E is a fun and interactive bot designed for Computer Science and Tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst its server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project. 😄
+DUCK-E is a fun and interactive bot designed for Computer Science and Tech communities platformed on discord. It's core objective is to create a fun and interactive space for learning and discussion amongst its server members. This bot was created and is maintained by students at Columbus State University within the ACM Chapter. The duck represents the official mascot for the ACM @ CSU organization and is beloved by all. We hope you enjoy our project!
 
 ## Commands
 ### Trivia and Studying
