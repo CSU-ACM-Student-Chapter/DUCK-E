@@ -20,7 +20,7 @@ class Questions(commands.Cog):
         self.flash_events: FlashEventTypedDict = {}
 
     SUBJECT_OPTIONS: app_commands.choices = [
-        app_commands.Choice(name="General", value="General"),
+        #app_commands.Choice(name="General", value="General"), #TODO: Add General CSV for main channel
         app_commands.Choice(name="Data Structures", value=constants.RESOURCES_QUESTIONS_DATA_STRUCTURES_FILE),
         app_commands.Choice(name="Networking", value=constants.RESOURCES_QUESTIONS_NETWORKING_BASICS_FILE),
         app_commands.Choice(name="AZ 900", value=constants.RESOURCES_QUESTIONS_AZ_900_FILE)
