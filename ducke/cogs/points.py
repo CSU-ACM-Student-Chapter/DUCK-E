@@ -1,16 +1,11 @@
 from discord.ext import commands
 from discord import app_commands, Interaction, InteractionResponded, Member
-import os, logging, mysql.connector
+import logging
+from ..constants import constants
 
 _log = logging.getLogger(__name__)
 
-conn = mysql.connector.connect(
-    host=os.getenv('DATABASE_HOSTNAME'),
-    user=os.getenv('DATABASE_USERNAME'),
-    password=os.getenv('DATABASE_PASSWORD'),
-    database=os.getenv('DATABASE_NAME')
-)
-cursor = conn.cursor()
+cursor = constants.MYSQL_CONNECTION.cursor()
 cursor.execute('''CREATE TABLE IF NOT EXISTS points (user_id BIGINT PRIMARY KEY, points INT DEFAULT 0)''')
 
 class Points(commands.Cog):
@@ -93,21 +88,21 @@ def get_points(user_id) -> int:
         return result[0]
     else:
         cursor.execute("INSERT INTO points (user_id, points) VALUES (%s, %s)", (user_id, 0))
-        conn.commit()
+        constants.MYSQL_CONNECTION.commit()
         return 0
 
 # Add points to a user
 def add_points(user_id: int, points: int) -> None:
     current_points = get_points(user_id)
     cursor.execute("UPDATE points SET points = %s WHERE user_id = %s", (current_points + points, user_id))
-    conn.commit()
+    constants.MYSQL_CONNECTION.commit()
 
 # Remove points from a user
 def remove_points(user_id: int, points: int) -> None:
     current_points = get_points(user_id)
     new_points = max(0, current_points - points)
     cursor.execute("UPDATE points SET points = %s WHERE user_id = %s", (new_points, user_id))
-    conn.commit()
+    constants.MYSQL_CONNECTION.commit()
 
 # Format points with commas
 def format_points(points: int) -> str:
