@@ -1,11 +1,3 @@
-'''
-TODO:
-- Implement a way to stop the question flash events gracefully.
-- Turn handler methods to discord tasks if needed.
-- Create constants for point values.
-- Create constants for HOUR_IN_SECONDS, DAY_IN_SECONDS, etc.
-'''
-
 from discord.ext import commands
 from discord import app_commands, Interaction, InteractionResponded, Message, Thread, ChannelType
 import asyncio
@@ -17,6 +9,9 @@ from ..models.question import Question
 from ..constants import constants
 
 _log = logging.getLogger(__name__)
+
+cursor = constants.MYSQL_CONNECTION.cursor()
+cursor.execute('''CREATE TABLE IF NOT EXISTS flash_events (channel_id BIGINT PRIMARY KEY, subject TEXT, seconds_to_answer INT, points INT)''')
 
 class Questions(commands.Cog):
 
@@ -72,7 +67,7 @@ class Questions(commands.Cog):
                 await interaction.response.send_message("❌ I don't have permissions to complete this command in this channel. Please grant access in the Discord Developer Portal.", ephemeral=True)
                 return
             
-            await interaction.response.send_message("✅ Question flash event started! An admin must execute /flash-events-stop command to quit", ephemeral=True)
+            await interaction.response.send_message("ℹ️ Question flash is starting. An admin must execute /flash-events-stop command to quit", ephemeral=True)
             channel = self.bot.get_channel(interaction.channel_id)
             await self.start_flash_event(channel, subject, seconds_to_answer, 100)
         
@@ -98,7 +93,7 @@ class Questions(commands.Cog):
                 await interaction.response.send_message("❌ You do not have permission to stop this flash event.", ephemeral=True)
                 return
             
-            await interaction.response.send_message("✅ Question flash event stopped!", ephemeral=True)
+            await interaction.response.send_message("ℹ️ Question flash event is being removed.", ephemeral=True)
             channel = self.bot.get_channel(interaction.channel_id)
             await self.stop_flash_event(channel)
         
@@ -238,9 +233,16 @@ class Questions(commands.Cog):
         seconds_to_answer: int,
         points: int
     ) -> None:
-        if channel in self.flash_events:
-            await channel.send("❌ A flash event is already running in this channel.")
+        
+        cursor.execute("SELECT channel_id FROM flash_events WHERE channel_id = %s", (channel.id,))
+        result = cursor.fetchone()
+        if result:
+            await channel.send("❌ A flash event is already registered for this channel.")
             return
+        
+        cursor.execute("INSERT INTO flash_events (channel_id, subject, seconds_to_answer, points) VALUES (%s, %s, %s, %s)", 
+                       (channel.id, subject, seconds_to_answer, points))
+        constants.MYSQL_CONNECTION.commit()
         
         flash_event = FlashEvent(
             channel=channel,
@@ -249,17 +251,41 @@ class Questions(commands.Cog):
             points=points,
             cog=self
         )
-        self.flash_events[channel] = flash_event
+        self.flash_events[channel.id] = flash_event
         await flash_event.start()
 
     async def stop_flash_event(self, channel: Message.channel) -> None:
-        if channel not in self.flash_events:
-            await channel.send("❌ No flash event is running in this channel.")
+        
+        cursor.execute("SELECT channel_id FROM flash_events WHERE channel_id = %s", (channel.id,))
+        result = cursor.fetchone()
+        if not result:
+            await channel.send("❌ No flash event is registered for this channel.")
             return
         
-        flash_event: FlashEvent = self.flash_events.pop(channel)
+        cursor.execute("DELETE FROM flash_events WHERE channel_id = %s", (channel.id,))
+        constants.MYSQL_CONNECTION.commit()
+
+        flash_event: FlashEvent = self.flash_events[channel.id]
         await flash_event.stop()
-        await channel.send("✅ Flash event has been stopped.")
+        self.flash_events.pop(channel.id)
+        await channel.send("✅ Flash event has been stopped.", ephemeral=True)
+
+    async def restart_flash_events_on_ready(self) -> None:
+        cursor.execute("SELECT channel_id, subject, seconds_to_answer, points FROM flash_events")
+        results = cursor.fetchall()
+        for channel_id, subject, seconds_to_answer, points in results:
+            channel = self.bot.get_channel(channel_id)
+            if channel:
+                flash_event = FlashEvent(
+                    channel=channel,
+                    subject=subject,
+                    seconds_to_answer=seconds_to_answer,
+                    points=points,
+                    cog=self
+                )
+                self.flash_events[channel.id] = flash_event
+                await flash_event.restart()
+                _log.info(f"Restarted flash event in channel ID {channel_id}")
 
 async def setup(bot: commands.Bot) -> None:  
     await bot.add_cog(Questions(bot))
@@ -288,6 +314,10 @@ class FlashEvent:
         if self.task:
             self.task.cancel()
 
+    async def restart(self) -> None:
+        await self.stop()
+        await self.start()
+
     async def run(self) -> None:
         
         while True:
@@ -300,5 +330,5 @@ class FlashEvent:
             await asyncio.sleep(post_question_delay)
 
 class FlashEventTypedDict(TypedDict):
-    channel: Message.channel
+    channel_id: int
     flash_event: FlashEvent

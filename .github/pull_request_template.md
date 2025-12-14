@@ -3,8 +3,8 @@
 
 ## Check List
 <!--Add an x to check.-->
-- []  I have personally tested my code locally
-- [] My python package versions are synced with the *requirements.txt* file. Or close!
+- [] Myself or someone else has tested my code locally
+- [] Python package versions are synced with the *requirements.txt* file. Or close!
 <!--Run 'pip list' to check. Important!-->
 - [] I have updated the issues tab 
 
