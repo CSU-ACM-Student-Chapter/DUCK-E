@@ -8,10 +8,8 @@ DUCK-E is a fun and interactive bot designed for Computer Science and Tech commu
 - _**/question**_ Posts a random multiple-choice question from a selected topic, allows reactions, and evaluates answers.
 - _**/quiz**_ Posts multiple random questions from the chosen topic into a dedicated thread within the interactions channel. Great for studying!
 ### Member Points
-- _**/add-points**_ Provided the user and amount of points. Will add the given the amount to the named user. **(Admin Only)**
 - _**/leaderboard**_ Returns the Top 10 Users with the highest point value
 - _**/my-points**_ Returns user points
-- _**/remove-points**_ Provided the user and amount of points. Will remove the given the amount from the named user. **(Admin Only)**
 ### Client Server Comms
 - _**/ping**_ Tests bot latency. Helpful for performing health checks on the server.
 
@@ -46,6 +44,9 @@ on a server for testing
         - No need to implement their code, although all is helpful and recommended for beginners to watch
         - **Key time stamps:** 1:15-7:15, 13:51-16:10
         - **Note:** In the 2nd portion, you will instead add your token to *.env*
+
+#### SQL Connection
+- To have a database to connect to you can either set up a MySQL database or use SQLite following the steps located at the bottom of the _ducke/constants/constants.py_ file.
 
 ## Going past the first run 🫡
 - Open the [Issues Tab](https://github.com/CSU-ACM-Student-Chapter/DUCK-E/labels) and look for **good first issue**. This will help you gain good footing and understanding of the repo while still contributing to important tasks.

@@ -18,7 +18,7 @@ class Points(commands.Cog):
         try:
             points = format_points(get_points(interaction.user.id))
             await interaction.response.send_message(f"{interaction.user.mention}, you have {points} points.", ephemeral=True)
-        except Exception as e:
+        except:
             _log.exception(f"[ERROR in /my-points]")
             try:
                 await interaction.followup.send("❌ Something went wrong while fetching your points.", ephemeral=True)
@@ -44,6 +44,9 @@ class Points(commands.Cog):
                 await interaction.followup.send("❌ Something went wrong while fetching the leaderboard.", ephemeral=True)
             except InteractionResponded:
                 pass
+            
+    '''
+    # Used for testing purposes only
 
     @app_commands.command(name="add-points", description="Add points to a user.")
     @app_commands.describe(member="The member to add points to", points="Number of points to add")
@@ -76,6 +79,7 @@ class Points(commands.Cog):
                 await interaction.followup.send("❌ Something went wrong while removing points.", ephemeral=True)
             except InteractionResponded:
                 pass
+    '''
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Points(bot))
