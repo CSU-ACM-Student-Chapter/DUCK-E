@@ -173,7 +173,6 @@ class Questions(commands.Cog):
                 await channel.send(f"**Quiz started by {interaction.user.mention}! Quiz has been created in {thread.name}.**")
 
             await thread.send(f"## Quiz\n**Questions:** {quiz_length.value}\n**Subject:** {subject.name}\n**Time to answer:** {seconds_to_answer.name}\n**Quiz Start Time:** {datetime.datetime.now().strftime("%H:%M %b-%d")}\n**Quiz End Time:** {(datetime.datetime.now() + datetime.timedelta(seconds=seconds_to_answer.value)).strftime("%H:%M %b-%d")}")  
-            await self.quiz_handler(thread, subject.value, seconds_to_answer.value, quiz_length.value, 5)
             await self.quiz_handler(thread, subject.value, seconds_to_answer.value, quiz_length.value, constants.POINTS_FOR_CORRECT_QUIZ_ANSWER)
 
         except:
