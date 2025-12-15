@@ -18,19 +18,19 @@ NOTE
 '''
 
 # Access to Resource Directories
-RESOURCES_FOLDER= os.path.join(os.getcwd(), f'ducke\\resources\\')
-RESOURCES_QUESTIONS_FOLDER= os.path.join(os.getcwd(), f'ducke\\resources\\questions\\')
-RESOURCES_RESPONSES_FOLDER= os.path.join(os.getcwd(), f'ducke\\resources\\responses\\')
+RESOURCES_FOLDER= os.path.join(os.getcwd(), 'ducke', 'resources')
+RESOURCES_QUESTIONS_FOLDER= os.path.join(RESOURCES_FOLDER, 'questions')
+RESOURCES_RESPONSES_FOLDER= os.path.join(RESOURCES_FOLDER, 'responses')
 
 # Access to all Files within Resources Questions Directory
-RESOURCES_QUESTIONS_AZ_900_FILE= os.path.join(os.getcwd(), f'ducke\\resources\\questions\\az 900.csv')
-RESOURCES_QUESTIONS_DATA_STRUCTURES_FILE=os.path.join(os.getcwd(), f'ducke\\resources\\questions\\data structure basics.csv')
-RESOURCES_QUESTIONS_NETWORKING_BASICS_FILE=os.path.join(os.getcwd(), f'ducke\\resources\\questions\\networking basics.csv')
+RESOURCES_QUESTIONS_AZ_900_FILE= os.path.join(RESOURCES_QUESTIONS_FOLDER, 'az 900.csv')
+RESOURCES_QUESTIONS_DATA_STRUCTURES_FILE=os.path.join(RESOURCES_QUESTIONS_FOLDER, 'data structure basics.csv')
+RESOURCES_QUESTIONS_NETWORKING_BASICS_FILE=os.path.join(RESOURCES_QUESTIONS_FOLDER, 'networking basics.csv')
 
 # Access to all Response Text Files
-RESOURCES_RESPONSES_QUESTION_CHEATER= os.path.join(os.getcwd(), f'ducke\\resources\\responses\\question_cheater.txt')
-RESOURCES_RESPONSES_QUESTION_CORRECT= os.path.join(os.getcwd(), f'ducke\\resources\\responses\\question_correct.txt')
-RESOURCES_RESPONSES_QUESTION_INCORRECT= os.path.join(os.getcwd(), f'ducke\\resources\\responses\\question_incorrect.txt')
+RESOURCES_RESPONSES_QUESTION_CHEATER= os.path.join(RESOURCES_RESPONSES_FOLDER, 'question_cheater.txt')
+RESOURCES_RESPONSES_QUESTION_CORRECT= os.path.join(RESOURCES_RESPONSES_FOLDER, 'question_correct.txt')
+RESOURCES_RESPONSES_QUESTION_INCORRECT= os.path.join(RESOURCES_RESPONSES_FOLDER, 'question_incorrect.txt')
 
 # Access to denied request messages
 ACCESS_REQUEST_MESSAGE="❌ I don't have permissions to complete this command in this channel. Please grant access in the Discord Developer Portal."
