@@ -69,7 +69,7 @@ class Questions(commands.Cog):
             
             await interaction.response.send_message("ℹ️ Question flash is starting. An admin must execute /flash-events-stop command to quit", ephemeral=True)
             channel = self.bot.get_channel(interaction.channel_id)
-            await self.start_flash_event(channel, subject, seconds_to_answer, 100)
+            await self.start_flash_event(channel, subject, seconds_to_answer, constants.POINTS_FOR_CORRECT_FLASH_QUESTION_ANSWER)
         
         except:
             _log.exception(f"[ERROR in /flash-events-start]")
@@ -124,7 +124,7 @@ class Questions(commands.Cog):
             
             await interaction.response.send_message(f"✅ Question processing.", ephemeral=True) 
             channel = self.bot.get_channel(interaction.channel_id)
-            await self.question_handler(channel, subject, seconds_to_answer, 5)
+            await self.question_handler(channel, subject, seconds_to_answer, constants.POINTS_FOR_CORRECT_QUESTION_ANSWER)
         
         except:
             _log.exception(f"[ERROR in /question]")
@@ -174,6 +174,7 @@ class Questions(commands.Cog):
 
             await thread.send(f"## Quiz\n**Questions:** {quiz_length.value}\n**Subject:** {subject.name}\n**Time to answer:** {seconds_to_answer.name}\n**Quiz Start Time:** {datetime.datetime.now().strftime("%H:%M %b-%d")}\n**Quiz End Time:** {(datetime.datetime.now() + datetime.timedelta(seconds=seconds_to_answer.value)).strftime("%H:%M %b-%d")}")  
             await self.quiz_handler(thread, subject.value, seconds_to_answer.value, quiz_length.value, 5)
+            await self.quiz_handler(thread, subject.value, seconds_to_answer.value, quiz_length.value, constants.POINTS_FOR_CORRECT_QUIZ_ANSWER)
 
         except:
             _log.exception(f"[ERROR in /quiz]")
