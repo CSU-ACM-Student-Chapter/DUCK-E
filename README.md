@@ -61,7 +61,7 @@ At a high level this will provide:
 - Study Progress Tracking - _/quiz-progress-chart_
 - Club Info Reporting - _/announcements_
 - Board Games - _/start-game_
-- Board Game Server Tournaments - /start-game-tournament
+- Board Game Server Tournaments - _/start-game-tournament_
 
 # Credits
 DUCK-E picture: [flikr - Jo Blakely](https://flickr.com/photos/pickledjo/)
