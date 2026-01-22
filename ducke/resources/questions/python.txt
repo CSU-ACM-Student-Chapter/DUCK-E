@@ -1,0 +1,25 @@
+# Python MCQ Description
+Provides Generic questions related to python. Great for those looking to build foundational knowledge of key Python's syntax and concepts.
+
+## Current topics
+- Variables
+- Precedence Associativity
+- Bitwise
+- Boolean
+- Loops
+
+## To Add:
+- Strings
+- Lists
+- List Comprehension
+- Tuples
+- Sets
+- Dictionaries
+- Functions
+- Regular Expressions
+- Files
+- Classes and Objects
+- Python OOP
+
+**Questions:** [1000 Python MCQ](https://www.sanfoundry.com/1000-python-questions-answers/)
+**Images Created At:** [Carbon](https://carbon.now.sh/?bg=rgba%28255%2C255%2C255%2C1%29&t=blackboard&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=0px&ph=0px&ln=false&fl=1&fm=Fira+Code&fs=14px&lh=152%25&si=false&es=2x&wm=false&code=x%2520%253D%2520%255B%27ab%27%252C%2520%27cd%27%255D%250Afor%2520i%2520in%2520x%253A%250A%2520%2520%2520%2520i.upper%28%29%250Aprint%28x%29)

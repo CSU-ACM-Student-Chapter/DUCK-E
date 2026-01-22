@@ -1,7 +1,7 @@
 import random
 import pandas as pd
-import re
-from discord import Message
+import os
+from discord import Message,Thread, TextChannel, File
 from discord.ext import commands
 from ..constants import constants
 import ducke.cogs.points as points_cog
@@ -21,17 +21,14 @@ class Question:
         b = str(df.iat[self.question_number,2])
         c = str(df.iat[self.question_number,3])
         d = str(df.iat[self.question_number,4])
+        
+        self.answer = self._match_letter_to_number(str(df.iat[self.question_number,5]))
+        self.explanation = str(df.iat[self.question_number,6])
+        picture = str(df.iat[self.question_number,7])
+        self.picture = picture if (not pd.isna(df.iloc[self.question_number, 7]) and picture.strip() != "") else None
 
         self.answer_list = [a, b, c, d]
         self.answer_emojis = ['🇦', '🇧', '🇨', '🇩']
-        
-        self.formatted_question = f"**Q{self.question_number} {self.question}**\n\
-            **A:** {self.answer_list[0]}\n\
-            **B:** {self.answer_list[1]}\n\
-            **C:** {self.answer_list[2]}\n\
-            **D:** {self.answer_list[3]}\n"
-        
-        self.answer = self._match_letter_to_number(str(df.iat[self.question_number,5]))
 
     # Attach a list of emojis to a discord message
     async def attach_emojis(self, message: Message) -> None:
@@ -69,6 +66,20 @@ class Question:
             for cheater in cheaters:
                 points_cog.remove_points(cheater.id, points)
             await message.channel.send(cheaters_message)
+
+    async def submit_question(self, channel: TextChannel|Thread) -> Message:
+        formatted_question = f"**Q{self.question_number} {self.question}**\n\
+            **A:** {self.answer_list[0]}\n\
+            **B:** {self.answer_list[1]}\n\
+            **C:** {self.answer_list[2]}\n\
+            **D:** {self.answer_list[3]}\n"
+        
+        if self.picture and self.picture.strip() != "":
+            question_message = await channel.send(formatted_question, file=File(os.path.join(constants.RESOURCES_QUESTIONS_PYTHON_IMAGES_FOLDER, self.picture)))
+        else:
+            question_message = await channel.send(formatted_question)
+
+        return question_message
             
     # Find any users that gave more two reactions           
     async def _duplicate_reacts(self, message: Message) -> list:

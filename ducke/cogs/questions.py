@@ -19,11 +19,12 @@ class Questions(commands.Cog):
         self.bot = bot
         self.flash_events: FlashEventTypedDict = {}
 
-    SUBJECT_OPTIONS: app_commands.choices = [
-        #app_commands.Choice(name="General", value="General"), #TODO: Add General CSV for main channel
-        app_commands.Choice(name="Data Structures", value=constants.RESOURCES_QUESTIONS_DATA_STRUCTURES_FILE),
-        app_commands.Choice(name="Networking", value=constants.RESOURCES_QUESTIONS_NETWORKING_BASICS_FILE),
-        app_commands.Choice(name="AZ 900", value=constants.RESOURCES_QUESTIONS_AZ_900_FILE)
+    SUBJECT_CSV_OPTIONS: app_commands.choices = [
+        app_commands.Choice(name="Python", value=constants.RESOURCES_QUESTIONS_PYTHON_CSV_FILE)
+    ]
+
+    SUBJECT_TXT_OPTIONS: app_commands.choices = [
+        app_commands.Choice(name="Python", value=constants.RESOURCES_QUESTIONS_PYTHON_TXT_FILE)
     ]
     
     TIMER_OPTIONS: app_commands.choices = [
@@ -51,14 +52,14 @@ class Questions(commands.Cog):
     ]
 
     @app_commands.command(name="flash-events-start", description="Sends questions at random. React FAST for Pts multiplier bonus!")
-    @app_commands.choices(subject=SUBJECT_OPTIONS, seconds_to_answer=FLASH_TIMER_OPTIONS)
+    @app_commands.choices(subject=SUBJECT_CSV_OPTIONS, seconds_to_answer=FLASH_TIMER_OPTIONS)
     @app_commands.describe(subject="Select a topic", seconds_to_answer="Time allowed to answer")
     @app_commands.rename(seconds_to_answer="minutes_to_answer")
     async def flash_events_start(
         self,
         interaction: Interaction,
-        subject: str,
-        seconds_to_answer: int
+        subject: app_commands.Choice[str],
+        seconds_to_answer: app_commands.Choice[int]
     ) -> None:
         
         try:
@@ -69,7 +70,7 @@ class Questions(commands.Cog):
             
             await interaction.response.send_message("ℹ️ Question flash is starting. An admin must execute /flash-events-stop command to quit", ephemeral=True)
             channel = self.bot.get_channel(interaction.channel_id)
-            await self.start_flash_event(channel, subject, seconds_to_answer, constants.POINTS_FOR_CORRECT_FLASH_QUESTION_ANSWER)
+            await self.start_flash_event(channel, subject.value, seconds_to_answer.value, constants.POINTS_FOR_CORRECT_FLASH_QUESTION_ANSWER)
         
         except:
             _log.exception(f"[ERROR in /flash-events-start]")
@@ -105,14 +106,14 @@ class Questions(commands.Cog):
                 pass
     
     @app_commands.command(name="question", description="Pulls a random question from the chosen topic and posts it.")
-    @app_commands.choices(subject=SUBJECT_OPTIONS, seconds_to_answer=TIMER_OPTIONS)
+    @app_commands.choices(subject=SUBJECT_CSV_OPTIONS, seconds_to_answer=TIMER_OPTIONS)
     @app_commands.describe(subject="Select a topic", seconds_to_answer="Time allowed to answer")
     @app_commands.rename(seconds_to_answer="time_to_answer")
     async def question(
         self,
         interaction: Interaction,
-        subject: str,
-        seconds_to_answer: int
+        subject: app_commands.Choice[str],
+        seconds_to_answer: app_commands.Choice[int]
     ) -> None:
         
         try:
@@ -121,10 +122,10 @@ class Questions(commands.Cog):
                not interaction.channel.permissions_for(interaction.guild.me).add_reactions):
                 await interaction.response.send_message("❌ I don't have permissions to complete this command in this channel.", ephemeral=True)
                 return
-            
+
             await interaction.response.send_message(f"✅ Question processing.", ephemeral=True) 
             channel = self.bot.get_channel(interaction.channel_id)
-            await self.question_handler(channel, subject, seconds_to_answer, constants.POINTS_FOR_CORRECT_QUESTION_ANSWER)
+            await self.question_handler(channel, subject.value, seconds_to_answer.value, constants.POINTS_FOR_CORRECT_QUESTION_ANSWER)
         
         except:
             _log.exception(f"[ERROR in /question]")
@@ -134,7 +135,7 @@ class Questions(commands.Cog):
                 pass
 
     @app_commands.command(name="quiz", description="Pulls several random questions from the chosen topic and posts it.")
-    @app_commands.choices(subject=SUBJECT_OPTIONS, seconds_to_answer=TIMER_OPTIONS, quiz_length=QUIZ_LENGTH_OPTIONS)
+    @app_commands.choices(subject=SUBJECT_CSV_OPTIONS, seconds_to_answer=TIMER_OPTIONS, quiz_length=QUIZ_LENGTH_OPTIONS)
     @app_commands.describe(subject="Select a topic", seconds_to_answer="Time allowed to answer")
     @app_commands.rename(seconds_to_answer="time_to_answer")
     async def quiz(
@@ -172,7 +173,14 @@ class Questions(commands.Cog):
                 
                 await channel.send(f"**Quiz started by {interaction.user.mention}! Quiz has been created in {thread.name}.**")
 
-            await thread.send(f"## Quiz\n**Questions:** {quiz_length.value}\n**Subject:** {subject.name}\n**Time to answer:** {seconds_to_answer.name}\n**Quiz Start Time:** {datetime.datetime.now().strftime("%H:%M %b-%d")}\n**Quiz End Time:** {(datetime.datetime.now() + datetime.timedelta(seconds=seconds_to_answer.value)).strftime("%H:%M %b-%d")}")  
+            await thread.send(f"\
+---------------------------------------------------------------------\n\
+# {subject.name} Quiz\n\
+**Questions:** {quiz_length.value}\n\
+**Time to answer:** {seconds_to_answer.name}\n\
+**Quiz Start Time:** {datetime.datetime.now().strftime("%H:%M %b-%d")}\n\
+**Quiz End Time:** {(datetime.datetime.now() + datetime.timedelta(seconds=seconds_to_answer.value)).strftime("%H:%M %b-%d")}\n\
+---------------------------------------------------------------------")  
             await self.quiz_handler(thread, subject.value, seconds_to_answer.value, quiz_length.value, constants.POINTS_FOR_CORRECT_QUIZ_ANSWER)
 
         except:
@@ -181,6 +189,16 @@ class Questions(commands.Cog):
                 await interaction.followup.send("❌ Something went wrong while processing the quiz.")
             except InteractionResponded:
                 pass
+
+    @app_commands.command(name="subject-overview", description="Provides an overview of the selected subject.")
+    @app_commands.choices(subject=SUBJECT_TXT_OPTIONS)
+    @app_commands.describe(subject="Select a topic")
+    async def subject_overview(
+        self,
+        interaction: Interaction,
+        subject: app_commands.Choice[str]
+    ) -> None:
+        pass
 
     async def question_handler(
             self,
@@ -192,7 +210,7 @@ class Questions(commands.Cog):
 
         question: Question = Question(subject, self.bot)
 
-        message: Message = await channel.send(question.formatted_question)
+        message: Message = await question.submit_question(channel)
         await question.attach_emojis(message)
         
         await asyncio.sleep(seconds_to_answer)
@@ -213,7 +231,7 @@ class Questions(commands.Cog):
         
         messages: List[Message] = []
         for question in questions:
-            message = await thread.send(question.formatted_question)
+            message = await question.submit_question(thread)
             messages.append(message)
             await asyncio.sleep(0.5)
 
