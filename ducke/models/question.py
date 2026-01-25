@@ -66,7 +66,7 @@ class Question:
             with open(constants.RESOURCES_RESPONSES_FLASH_QUESTION_ANNOUNCEMENTS, "r", encoding='utf-8') as file:
                 lines = file.readlines()
 
-            formatted_question += f"{random.choice(lines).strip()}\n"
+            formatted_question += f"{random.choice(lines).strip()} - I will self-destruct if 0 correct answers!\n\n"
         
         formatted_question += f"**Q{self.question_number} {self.question}**\n\
             **A:** {self.answer_list[0]}\n\
