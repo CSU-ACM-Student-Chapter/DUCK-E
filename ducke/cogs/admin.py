@@ -10,7 +10,7 @@ class Admin(commands.Cog):
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-
+    '''
     @app_commands.command(name="sync", description="Sync Commands")
     async def sync(self, interaction: Interaction) -> None:
         try:
@@ -21,7 +21,8 @@ class Admin(commands.Cog):
             try:
                 await interaction.followup.send("❌ Something went wrong while trying to sync commands.", ephemeral=True)
             except InteractionResponded:
-                pass  
-
+                pass
+    '''
+                
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Admin(bot))

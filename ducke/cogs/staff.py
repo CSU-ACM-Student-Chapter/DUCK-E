@@ -9,6 +9,7 @@ class Staff(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
     
+    '''
     @app_commands.command(name="announcements", description="Schedule an announcement for the server.")
     @app_commands.describe(
         month="Select a month",
@@ -43,6 +44,7 @@ class Staff(commands.Cog):
                 await interaction.followup.send("❌ Something went wrong while making the announcement.")
             except InteractionResponded:
                 pass
+    '''
     
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Staff(bot))

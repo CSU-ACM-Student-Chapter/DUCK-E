@@ -30,16 +30,22 @@ class Events(commands.Cog):
             if message.author == self.bot.user:
                 return
         
-            #self._daily_message_handler(message)
+            self._daily_message_handler(message)
         except:
             _log.exception("on_message() failed for Message: {message.content} ID: {message.id}")
             
     def _daily_message_handler(self, message: Message) -> None:
-        cursor.execute("SELECT user_id FROM daily_messages WHERE user_id = %s AND DATE(timestamp) = CURDATE()", (message.author.id,))
+        cursor.execute(
+            """
+            INSERT INTO daily_messages (user_id, message, timestamp)
+            VALUES (%s, %s, CURRENT_TIMESTAMP)
+            ON DUPLICATE KEY UPDATE
+            message = VALUES(message), timestamp = CURRENT_TIMESTAMP
+            """,
+            (message.author.id, message.content)
+        )
         result = cursor.fetchone()  
         if result is None:
-            cursor.execute("INSERT INTO daily_messages (user_id, message, timestamp) VALUES (%s, %s, CURRENT_TIMESTAMP)", (message.author.id, message.content))
-            constants.MYSQL_CONNECTION.commit()
             add_points(message.author.id, constants.POINTS_FOR_FIRST_DAILY_MESSAGE)
         else:
             add_points(message.author.id, constants.POINTS_FOR_MESSAGE)

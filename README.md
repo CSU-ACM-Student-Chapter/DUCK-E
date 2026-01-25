@@ -3,13 +3,17 @@ DUCK-E is a fun and interactive bot designed for Computer Science and Tech commu
 
 ## Commands
 ### Trivia and Studying
+- _**/explain-question**_ Explains the answer to a selected question
 - _**/flash-events-start**_ One 'Quick event' question will be sent at random on a daily occurence. Those on that're able to answer quickly and correctly will be rewarded a generous amount of server points.
 - _**/flash-events-stop**_ Stops the flash-events in the channel where the command was given. **(Admin Only)**
 - _**/question**_ Posts a random multiple-choice question from a selected topic, allows reactions, and evaluates answers.
 - _**/quiz**_ Posts multiple random questions from the chosen topic into a dedicated thread within the interactions channel. Great for studying!
+- _**/subject-overview**_ Provides the subject topic and subtopic details. 
 ### Member Points
 - _**/leaderboard**_ Returns the Top 10 Users with the highest point value
 - _**/my-points**_ Returns user points
+### Miscellaneos Fun
+- _**/tell-a-joke**_ Tells a joke to the channel server. Jokes are a blend between bad puns, dad jokes, boomer humor, and zoomer humor.
 ### Client Server Comms
 - _**/ping**_ Tests bot latency. Helpful for performing health checks on the server.
 
@@ -58,6 +62,7 @@ For more information on planned features please refer to the [Issues Tab](https:
 At a high level this will provide:
 
 - Personal studying material - _/add-subject_, _/remove-subjuct_
+- Weekly Coding Challenges - _/weekly-coding-tasks-start_, _/weekly-coding-tasks-end_
 - Study Progress Tracking - _/quiz-progress-chart_
 - Club Info Reporting - _/announcements_
 - Board Games - _/start-game_

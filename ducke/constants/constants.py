@@ -21,6 +21,7 @@ NOTE
 RESOURCES_FOLDER= os.path.join(os.getcwd(), 'ducke', 'resources')
 RESOURCES_QUESTIONS_FOLDER= os.path.join(RESOURCES_FOLDER, 'questions')
 RESOURCES_RESPONSES_FOLDER= os.path.join(RESOURCES_FOLDER, 'responses')
+RESOURCES_JOKE_ATTACHMENTS_FOLDER= os.path.join(RESOURCES_FOLDER, 'joke_attachments')
 
 # Access to all Files within Resources Questions Directory
 RESOURCES_QUESTIONS_PYTHON_IMAGES_FOLDER= os.path.join(RESOURCES_QUESTIONS_FOLDER, 'python_images')
@@ -31,6 +32,10 @@ RESOURCES_QUESTIONS_PYTHON_TXT_FILE= os.path.join(RESOURCES_QUESTIONS_FOLDER, 'p
 RESOURCES_RESPONSES_QUESTION_CHEATER= os.path.join(RESOURCES_RESPONSES_FOLDER, 'question_cheater.txt')
 RESOURCES_RESPONSES_QUESTION_CORRECT= os.path.join(RESOURCES_RESPONSES_FOLDER, 'question_correct.txt')
 RESOURCES_RESPONSES_QUESTION_INCORRECT= os.path.join(RESOURCES_RESPONSES_FOLDER, 'question_incorrect.txt')
+RESOURCES_RESPONSES_FLASH_QUESTION_ANNOUNCEMENTS= os.path.join(RESOURCES_RESPONSES_FOLDER, 'flash_question_announcements.txt')
+
+RESOURCES_RESPONSES_JOKES= os.path.join(RESOURCES_RESPONSES_FOLDER, 'jokes.csv')
+RESOURCES_RESPONSE_JOKE_ANNOUNCEMENTS= os.path.join(RESOURCES_RESPONSES_FOLDER, 'joke_announcements.txt')
 
 # Access to denied request messages
 ACCESS_REQUEST_MESSAGE="❌ I don't have permissions to complete this command in this channel. Please grant access in the Discord Developer Portal."

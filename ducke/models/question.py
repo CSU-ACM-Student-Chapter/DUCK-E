@@ -1,6 +1,7 @@
 import random
 import pandas as pd
 import os
+import re
 from discord import Message,Thread, TextChannel, File
 from discord.ext import commands
 from ..constants import constants
@@ -35,25 +36,16 @@ class Question:
         for emoji in self.answer_emojis:
             await message.add_reaction(emoji)
 
-    # Get the winners and cheaters of a question and send a message to the server
-    async def generate_question_response(self, message: Message) -> None:
+    async def generate_question_response_with_points(self, message: Message, points: int, is_flash_event: bool) -> None:
         cheaters = await self._duplicate_reacts(message)
         winners = await self._correct_reacts(message, cheaters)
 
         cheaters_message, winners_message = await self._build_question_response(cheaters, winners)
-   
-        await message.reply(f"**Q{self.question_number} Answer:** {self.answer_emojis[self.answer]} {self.answer_list[self.answer]}")
-        await message.channel.send(winners_message)
+
+        if is_flash_event and cheaters_message is None and winners_message is None:
+            await message.delete()
+            return
         
-        if cheaters:
-            await message.channel.send(cheaters_message)
-
-    async def generate_question_response_with_points(self, message: Message, points: int) -> None:
-        cheaters = await self._duplicate_reacts(message)
-        winners = await self._correct_reacts(message, cheaters)
-
-        cheaters_message, winners_message = await self._build_question_response(cheaters, winners)
-   
         await message.reply(f"**Q{self.question_number} Answer:** {self.answer_emojis[self.answer]} {self.answer_list[self.answer]}")
         
         if winners:
@@ -67,8 +59,16 @@ class Question:
                 points_cog.remove_points(cheater.id, points)
             await message.channel.send(cheaters_message)
 
-    async def submit_question(self, channel: TextChannel|Thread) -> Message:
-        formatted_question = f"**Q{self.question_number} {self.question}**\n\
+    async def submit_question(self, channel: TextChannel|Thread, flash_event: bool) -> Message:
+        formatted_question = ""
+        
+        if flash_event:
+            with open(constants.RESOURCES_RESPONSES_FLASH_QUESTION_ANNOUNCEMENTS, "r", encoding='utf-8') as file:
+                lines = file.readlines()
+
+            formatted_question += f"{random.choice(lines).strip()}\n"
+        
+        formatted_question += f"**Q{self.question_number} {self.question}**\n\
             **A:** {self.answer_list[0]}\n\
             **B:** {self.answer_list[1]}\n\
             **C:** {self.answer_list[2]}\n\
@@ -110,6 +110,9 @@ class Question:
         cheaters_message = ""
         winners_message = ""
 
+        if not cheaters and not winners:
+            return None, None
+        
         if cheaters:
             cheating_users = ""
             for cheater in cheaters:

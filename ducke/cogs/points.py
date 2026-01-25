@@ -46,7 +46,7 @@ class Points(commands.Cog):
                 pass
             
     '''
-    # Used for testing purposes only
+    # Used for testing purposes only or if an admin needs to adjust points
 
     @app_commands.command(name="add-points", description="Add points to a user.")
     @app_commands.describe(member="The member to add points to", points="Number of points to add")
