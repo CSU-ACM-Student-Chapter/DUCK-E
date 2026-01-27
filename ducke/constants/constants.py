@@ -1,4 +1,5 @@
-import os, mysql.connector#, sqlite3
+import os, mysql.connector
+import mysql.connector.cursor#, sqlite3
 
 '''
 PURPOSE
@@ -47,6 +48,10 @@ MYSQL_CONNECTION = mysql.connector.connect(
     password=os.getenv('DATABASE_PASSWORD'),
     database=os.getenv('DATABASE_NAME')
 )
+
+def get_cursor() -> mysql.connector.cursor.MySQLCursor:
+    MYSQL_CONNECTION.ping(reconnect=True, attempts=3, delay=5)
+    return MYSQL_CONNECTION.cursor()
 
 # Time Constants
 MINUTE_IN_SECONDS=60

@@ -5,8 +5,10 @@ from ..constants import constants
 
 _log = logging.getLogger(__name__)
 
-cursor = constants.MYSQL_CONNECTION.cursor()
+cursor = constants.get_cursor()
 cursor.execute('''CREATE TABLE IF NOT EXISTS points (user_id BIGINT PRIMARY KEY, points INT DEFAULT 0)''')
+constants.MYSQL_CONNECTION.commit()
+cursor.close()
 
 class Points(commands.Cog):
 
@@ -27,9 +29,13 @@ class Points(commands.Cog):
 
     @app_commands.command(name="leaderboard", description="Show the top 10 users.")
     async def leaderboard(self, interaction: Interaction):
-        try: 
+        try:
+            cursor = constants.get_cursor() 
             cursor.execute("SELECT user_id, points FROM points ORDER BY points DESC LIMIT 10")
             leaderboard_data = cursor.fetchall()
+            constants.MYSQL_CONNECTION.commit()
+            cursor.close()
+
             if leaderboard_data:
                 leaderboard_message = "**Leaderboard:**\n"
                 for idx, (user_id, points) in enumerate(leaderboard_data, start=1):
@@ -86,8 +92,12 @@ async def setup(bot: commands.Bot) -> None:
 
 # Fetch or initialize points for a user
 def get_points(user_id) -> int:
+    cursor = constants.get_cursor()
     cursor.execute("SELECT points FROM points WHERE user_id = %s", (user_id,))
     result = cursor.fetchone()
+    constants.MYSQL_CONNECTION.commit()
+    cursor.close()
+
     if result:
         return result[0]
     else:
@@ -98,15 +108,20 @@ def get_points(user_id) -> int:
 # Add points to a user
 def add_points(user_id: int, points: int) -> None:
     current_points = get_points(user_id)
+
+    cursor = constants.get_cursor()
     cursor.execute("UPDATE points SET points = %s WHERE user_id = %s", (current_points + points, user_id))
     constants.MYSQL_CONNECTION.commit()
+    cursor.close()
 
 # Remove points from a user
 def remove_points(user_id: int, points: int) -> None:
     current_points = get_points(user_id)
     new_points = max(0, current_points - points)
+    cursor = constants.get_cursor()
     cursor.execute("UPDATE points SET points = %s WHERE user_id = %s", (new_points, user_id))
     constants.MYSQL_CONNECTION.commit()
+    cursor.close()
 
 # Format points with commas
 def format_points(points: int) -> str:

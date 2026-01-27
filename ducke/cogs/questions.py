@@ -11,8 +11,10 @@ from ..constants import constants
 
 _log = logging.getLogger(__name__)
 
-cursor = constants.MYSQL_CONNECTION.cursor()
+cursor = constants.get_cursor()
 cursor.execute('''CREATE TABLE IF NOT EXISTS flash_events (channel_id BIGINT PRIMARY KEY, subject TEXT, seconds_to_answer INT, points INT)''')
+constants.MYSQL_CONNECTION.commit()
+cursor.close()
 
 class Questions(commands.Cog):
 
@@ -52,7 +54,6 @@ class Questions(commands.Cog):
         app_commands.Choice(name="5 Questions", value=5),
         app_commands.Choice(name="10 Questions", value=10),
     ]
-
 
     @app_commands.command(name="explain_question", description="Sends an explanation for a specific question.")
     @app_commands.choices(subject=SUBJECT_CSV_OPTIONS)
@@ -334,9 +335,12 @@ class Questions(commands.Cog):
         return True
 
     async def stop_flash_event(self, channel: Message.channel) -> bool:
-        
+        cursor = constants.get_cursor()
         cursor.execute("SELECT channel_id FROM flash_events WHERE channel_id = %s", (channel.id,))
         result = cursor.fetchone()
+        constants.MYSQL_CONNECTION.commit()
+        cursor.close()
+
         if not result:
             await channel.send("❌ No questions flash event is registered for this channel.")
             return False
@@ -351,8 +355,12 @@ class Questions(commands.Cog):
         return True
 
     async def restart_flash_events_on_ready(self) -> None:
+        cursor = constants.get_cursor()
         cursor.execute("SELECT channel_id, subject, seconds_to_answer, points FROM flash_events")
         results = cursor.fetchall()
+        constants.MYSQL_CONNECTION.commit()
+        cursor.close()
+        
         for channel_id, subject, seconds_to_answer, points in results:
             channel = self.bot.get_channel(channel_id)
             if channel:
@@ -401,7 +409,7 @@ class FlashEvent:
     async def run(self) -> None:
         
         while True:
-            flash_event_period = constants.MINUTE_IN_SECONDS
+            flash_event_period = constants.HOUR_IN_SECONDS * 12
             pre_question_delay = random.randint(0, flash_event_period - self.seconds_to_answer)
             post_question_delay = flash_event_period - self.seconds_to_answer - pre_question_delay
             

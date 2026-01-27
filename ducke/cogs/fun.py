@@ -7,8 +7,18 @@ import logging
 
 _log = logging.getLogger(__name__)
 
-cursor = constants.MYSQL_CONNECTION.cursor()
-cursor.execute('''CREATE TABLE IF NOT EXISTS jokes (server_guid BIGINT PRIMARY KEY, jokes INT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)''')
+cursor = constants.get_cursor()
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS jokes (
+        server_guid BIGINT PRIMARY KEY,
+        jokes INT,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    """
+)
+constants.MYSQL_CONNECTION.commit()
+cursor.close()
 
 class Fun(commands.Cog):
 
@@ -52,11 +62,14 @@ class Fun(commands.Cog):
 
     @tasks.loop(time=datetime.time.min)
     async def _reset_daily_joke_limit(self) -> None:
+        cursor = constants.get_cursor()
         cursor.execute("DELETE FROM jokes WHERE DATE(timestamp) < CURDATE()")
         constants.MYSQL_CONNECTION.commit()
+        cursor.close()
         _log.info("Emptied jokes table.")
 
     def _has_reached_daily_joke_limit(self, server_guid: int) -> bool:
+        cursor = constants.get_cursor()
         cursor.execute(
             """
             SELECT jokes FROM jokes
@@ -65,11 +78,12 @@ class Fun(commands.Cog):
             (server_guid,)
         )
         result = cursor.fetchone()
-        if result is not None and result[0] >= 3:
-            return True
-        return False
+        cursor.close()
+        
+        return result is not None and result[0] >= 3
     
     def _increase_daily_joke_count(self, server_guid: int) -> None:
+        cursor = constants.get_cursor()
         cursor.execute(
             """
             INSERT INTO jokes (server_guid, jokes, timestamp)
@@ -79,6 +93,8 @@ class Fun(commands.Cog):
             """,
             (server_guid,)
         )
+        constants.MYSQL_CONNECTION.commit()
+        cursor.close()
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Fun(bot))
