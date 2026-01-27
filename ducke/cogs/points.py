@@ -96,13 +96,14 @@ def get_points(user_id) -> int:
     cursor.execute("SELECT points FROM points WHERE user_id = %s", (user_id,))
     result = cursor.fetchone()
     constants.MYSQL_CONNECTION.commit()
-    cursor.close()
 
     if result:
+        cursor.close()
         return result[0]
     else:
         cursor.execute("INSERT INTO points (user_id, points) VALUES (%s, %s)", (user_id, 0))
         constants.MYSQL_CONNECTION.commit()
+        cursor.close()
         return 0
 
 # Add points to a user
@@ -118,6 +119,7 @@ def add_points(user_id: int, points: int) -> None:
 def remove_points(user_id: int, points: int) -> None:
     current_points = get_points(user_id)
     new_points = max(0, current_points - points)
+    
     cursor = constants.get_cursor()
     cursor.execute("UPDATE points SET points = %s WHERE user_id = %s", (new_points, user_id))
     constants.MYSQL_CONNECTION.commit()
