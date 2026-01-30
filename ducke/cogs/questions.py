@@ -409,7 +409,7 @@ class FlashEvent:
     async def run(self) -> None:
         
         while True:
-            flash_event_period = constants.HOUR_IN_SECONDS * 12
+            flash_event_period = constants.DAY_IN_SECONDS
             pre_question_delay = random.randint(0, flash_event_period - self.seconds_to_answer)
             post_question_delay = flash_event_period - self.seconds_to_answer - pre_question_delay
             
